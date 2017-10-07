@@ -7,6 +7,9 @@ package oregontrail;
 
 import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Actor;
+import cit260.oregonTrail.model.Animal;
+import cit260.oregonTrail.model.RegularSceneType;
+import cit260.oregonTrail.model.HuntingScene;
 import cit260.oregonTrail.model.AdviceScene;
 import cit260.oregonTrail.model.RiverScene;
 import cit260.oregonTrail.model.StoreScene;
@@ -55,6 +58,21 @@ public class OregonTrail {
         help.setDescription("Better turn back!");
         String advice = help.getDescription();
         System.out.println(advice + "\n");
+        
+        RegularSceneType regularHunt = new RegularSceneType();
+        regularHunt.setDescription("Hunting on the plains.");
+
+        HuntingScene hunt = new HuntingScene();
+        hunt.setTimer(2.5);
+        hunt.setCurrentAnimal("Elk"); 
+        hunt.setTotalMeat(13);
+        hunt.setDistanceToAnimal(97.4);
+        hunt.setRegularScene(regularHunt);
+        
+        System.out.println(regularHunt.toString());
+        System.out.println(hunt.toString());
+        System.out.println(Animal.Elk.getType() + " runs at " + Animal.Elk.getSpeed() + " the base rate. You can get " + Animal.Elk.getMinMeat()
+                + " to " +  Animal.Elk.getMaxMeat() + " pounds.\n");        
     }
     
 }
