@@ -6,6 +6,7 @@
 package cit260.oregonTrail.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class StoreScene implements Serializable {
     
     //class instance variables
+    private String description;
     private float costMultiplier;
     
     //constructor
@@ -21,6 +23,14 @@ public class StoreScene implements Serializable {
     }
     
     //getter and setter
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public float getCostMultiplier() {
         return costMultiplier;
     }
@@ -28,15 +38,16 @@ public class StoreScene implements Serializable {
     public void setCostMultiplier(float costMultiplier) {
         this.costMultiplier = costMultiplier;
     }
-    
+
     //hashcode
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Float.floatToIntBits(this.costMultiplier);
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.description);
+        hash = 13 * hash + Float.floatToIntBits(this.costMultiplier);
         return hash;
     }
-    
+
     //equals
     @Override
     public boolean equals(Object obj) {
@@ -53,14 +64,18 @@ public class StoreScene implements Serializable {
         if (Float.floatToIntBits(this.costMultiplier) != Float.floatToIntBits(other.costMultiplier)) {
             return false;
         }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
         return true;
     }
-    
+
     //toString
     @Override
     public String toString() {
-        return "StoreScene{" + "costMultiplier=" + costMultiplier + '}';
+        return "StoreScene{" + "description=" + description + ", costMultiplier=" + costMultiplier + '}';
     }
+    
     
     
     
