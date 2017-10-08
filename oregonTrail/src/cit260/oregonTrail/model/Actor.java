@@ -5,9 +5,6 @@
  */
 package cit260.oregonTrail.model;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 /**
  *
  * @author Stoddard
@@ -24,8 +21,8 @@ public enum Actor {
     GeneralStore3("Max","Max works at a general store. He is here to sell you supplies. Get the best deals in town.");
         
     //class instance variables
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     //constructor
     Actor(String name, String description) {
