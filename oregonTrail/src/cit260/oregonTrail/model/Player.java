@@ -19,6 +19,7 @@ public class Player implements Serializable {
     private String name;
     private int score;
     private ArrayList<Game> games = new ArrayList<Game>();
+    private ArrayList<InventoryItem> inventoryItem = new ArrayList<InventoryItem>();
     
     //constructor
     public Player() {
@@ -50,6 +51,16 @@ public class Player implements Serializable {
     public void setGames(ArrayList<Game> games) {
         this.games = games;
     }
+
+    public ArrayList<InventoryItem> getInventoryItem() {
+        return inventoryItem;
+    }
+
+    public void setInventoryItem(ArrayList<InventoryItem> inventoryItem) {
+        this.inventoryItem = inventoryItem;
+    }
+    
+    
 
     
     
