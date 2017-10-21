@@ -18,6 +18,8 @@ public class Game implements Serializable {
     private int date;
     private float pace;
     private float rations;
+    private int id;
+    private int score;
     private Player player;
 
     //constructor
@@ -57,6 +59,22 @@ public class Game implements Serializable {
         this.rations = rations;
     }
 
+    public float getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    } 
+    
     //class getter and setter
     public Player getPlayer() {
         return player;
@@ -72,6 +90,8 @@ public class Game implements Serializable {
         int hash = 7;
         hash = 97 * hash + (this.soundToggle ? 1 : 0);
         hash = 97 * hash + this.date;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + this.score;
         hash = 97 * hash + Float.floatToIntBits(this.pace);
         hash = 97 * hash + Float.floatToIntBits(this.rations);
         return hash;
@@ -96,6 +116,12 @@ public class Game implements Serializable {
         if (this.date != other.date) {
             return false;
         }
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.score != other.score) {
+            return false;
+        }
         if (Float.floatToIntBits(this.pace) != Float.floatToIntBits(other.pace)) {
             return false;
         }
@@ -108,7 +134,7 @@ public class Game implements Serializable {
     //toString function
     @Override
     public String toString() {
-        return "Game{" + "soundToggle=" + soundToggle + ", date=" + date + ", pace=" + pace + ", rations=" + rations + '}';
+        return "Game{" + "soundToggle=" + soundToggle + ", date=" + date + ", pace=" + pace + ", rations=" + rations + ", id=" + id + ", score=" + score + '}';
     }
 
 }
