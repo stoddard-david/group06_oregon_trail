@@ -11,4 +11,16 @@ package cit260.oregonTrail.control;
  */
 public class CharacterControl {
     
+    public static String setProfession(String profession){
+        String professionName = profession;
+        return professionName;
+    }
+        
+    public static double restHealing(double health){
+        
+        double newHealth = health + 1;
+        return newHealth;
+    }
+    
 }
+

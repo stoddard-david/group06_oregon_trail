@@ -11,4 +11,36 @@ package cit260.oregonTrail.control;
  */
 public class RiverControl {
     
+    public static boolean calcRiverSuccess(int currentDepth, int maxDepth, int currentWidth, int maxWidth) {
+    
+        //get random multipliers
+        double win = 1.5;
+        double widthMultiplier = (Math.random() - 0.5) * 2;
+        double depthMultiplier = (Math.random() - 0.5) * 2;
+        
+        double newWidth = currentWidth + (currentWidth * widthMultiplier);
+        double newDepth = currentDepth + (currentDepth * depthMultiplier);
+        
+        //check if valid
+        if (newWidth <= 0){
+            return true;
+        }
+        if (newDepth <= 0){
+            return true;
+        }
+        if (newWidth >= maxWidth){
+            return false;
+        }
+        if (newDepth >= maxDepth){
+            return false;
+        }
+        
+        //calculations
+        double riverSuccess = (newDepth * newWidth) / (currentDepth * currentWidth);
+        if (riverSuccess >= win) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
