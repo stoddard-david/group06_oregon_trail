@@ -59,11 +59,7 @@ public class Player implements Serializable {
     public void setInventoryItem(ArrayList<InventoryItem> inventoryItem) {
         this.inventoryItem = inventoryItem;
     }
-    
-    
-
-    
-    
+        
     //hashcode functions
     @Override
     public int hashCode() {
