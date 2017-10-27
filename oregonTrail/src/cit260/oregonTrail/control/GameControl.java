@@ -5,7 +5,9 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.model.Player;
 import java.util.Random;
+import oregontrail.OregonTrail;
 /**
  *
  * @author dglinzey
@@ -28,9 +30,6 @@ public class GameControl {
         
     }
     
-    public static void newPlayer() {
-        
-    }
 
     public static boolean toggleSound(boolean currentSound) {
         return !currentSound;
@@ -92,6 +91,20 @@ public class GameControl {
         int chance = rand.nextInt(100)+1;
 
         return (chance >= 75);
+    }
+
+    public static Player createPlayer(String name) {
+        
+        if (name == null) {
+            return null;
+        }
+        
+        Player player = new Player();
+        player.setName(name);
+        
+        OregonTrail.setPlayer(player); // save the player
+        
+        return player;
     }
     
 }
