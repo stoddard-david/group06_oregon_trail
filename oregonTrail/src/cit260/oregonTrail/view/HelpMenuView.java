@@ -5,32 +5,30 @@
  */
 package cit260.oregonTrail.view;
 
-import cit260.oregonTrail.control.GameControl;
 import java.util.Scanner;
-import oregontrail.OregonTrail;
 
 /**
  *
  * @author erinsmith
  */
-public class MainMenuView {
+public class HelpMenuView {
     
     private String menu;
-    
-    public MainMenuView() {
+
+    public HelpMenuView() {
         this.menu = "\n"
                   + "\n-------------------------------------------"
-                  + "\n| Main Menu                               |"
+                  + "\n| Help Menu                               |"
                   + "\n-------------------------------------------"
-                  + "\n1 - Start new game"
-                  + "\n2 - Get and start saved game"
-                  + "\n3 - Get help on how to play the game"
-                  + "\n4 - Save game"
-                  + "\nQ - Quit"
+                  + "\n1 - How to move"
+                  + "\n2 - How to hunt"
+                  + "\n3 - How do I increase health"
+                  + "\n4 - How do I cross a river"
+                  + "\nQ - Quit help menu"
                   + "\n-------------------------------------------";
     }
-
-    public void displayMainMenuView() {
+    
+    public void displayHelpMenu() {
         
         boolean done = false; // set flag to not done
         do {
@@ -44,10 +42,8 @@ public class MainMenuView {
             done = this.doAction(menuOption);
             
         } while (!done);
-        
-
     }
-
+    
     private String getMenuOption() {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         String value = ""; // value to be returned
@@ -69,24 +65,23 @@ public class MainMenuView {
         
         return value; // return the value entered
     }
-
+    
     private boolean doAction(String choice) {
         
         choice = choice.toUpperCase(); // convert choice to upper case
         
-        
         switch (choice) {
-            case "1": // create and start a new game
-               this.startNewGame();
+            case "1": // how to move
+               this.howMove();
                break;
-            case "2": // get and start an existing game
-                this.startExistingGame();
+            case "2": // how to hunt
+                this.howHunt();
                 break;
-            case "3": // display the help menu
-                this.displayHelpMenu();
+            case "3": // increase health
+                this.howHealth();
                 break;
-            case "4": // save the current game
-                this.saveGame();
+            case "4": // crossing a river
+                this.howRiver();
                 break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -96,26 +91,21 @@ public class MainMenuView {
         return false;
     }
 
-    private void startNewGame() {
-        // create a new game
-        GameControl.createNewGame(OregonTrail.getPlayer());
-        
-        // display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+    private void howMove() {
+        System.out.println("*** howMove function called ***");
     }
 
-    private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
+    private void howHunt() {
+        System.out.println("*** howHunt function called ***");
     }
 
-    private void displayHelpMenu() {
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenu();
+    private void howHealth() {
+        System.out.println("*** howHealth function called ***");
     }
 
-    private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+    private void howRiver() {
+        System.out.println("*** howRiver function called ***");
     }
-    
+
 }
+    

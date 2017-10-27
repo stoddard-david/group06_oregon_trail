@@ -14,8 +14,8 @@ import oregontrail.OregonTrail;
  */
 public class GameControl {
     
-    public static void startGame() {
-        
+    public static void createNewGame(Player player) {
+        System.out.println("\n*** called createNewGame function ***");
     }
     
     public static void saveGame(int id) {
