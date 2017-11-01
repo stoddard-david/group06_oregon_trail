@@ -47,6 +47,7 @@ public class OregonTrail {
     public static void setPlayer(Player player) {
         OregonTrail.player = player;
     }
+    
     private static Player player = null;
     
     public static void main(String[] args) {

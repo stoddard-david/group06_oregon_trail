@@ -17,9 +17,8 @@ public class Player implements Serializable {
     
     //class instance variables
     private String name;
-    private int score;
-    private ArrayList<Game> games = new ArrayList<Game>();
-    private ArrayList<InventoryItem> inventoryItem = new ArrayList<InventoryItem>();
+    private ArrayList<Game> games = new ArrayList<>();
+    private ArrayList<InventoryItem> inventoryItem = new ArrayList<>();
     
     //constructor
     public Player() {
@@ -30,17 +29,9 @@ public class Player implements Serializable {
         this.name = name;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     //getter functions
     public String getName() {
         return name;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     //class getter and setter
@@ -65,7 +56,6 @@ public class Player implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + this.score;
         return hash;
     }
 
@@ -82,9 +72,6 @@ public class Player implements Serializable {
             return false;
         }
         final Player other = (Player) obj;
-        if (this.score != other.score) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -94,7 +81,7 @@ public class Player implements Serializable {
     //toString function
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", score=" + score + '}';
+        return "Player{" + "name=" + name + "}";
     }  
     
 }

@@ -21,9 +21,12 @@ public class Game implements Serializable {
     private int id;
     private int score;
     private Player player;
+    private PartyLeader partyLeader;
+    private PartyMember[] partyMembers;
 
     //constructor
     public Game() {
+        partyMembers = new PartyMember[5];
     }
 
     //setter and getter functions
@@ -82,7 +85,23 @@ public class Game implements Serializable {
 
     public void setPlayer(Player player) {
         this.player = player;
-    }    
+    }
+    
+    public PartyLeader getPartyLeader() {
+        return partyLeader;
+    }
+    
+    public void setPartyLeader(PartyLeader partyLeader) {
+        this.partyLeader = partyLeader;
+    }  
+    
+    public PartyMember getPartyMembers(int partyMemberIndex) {
+        return partyMembers[partyMemberIndex];
+    }
+    
+    public void setPartyMembers(PartyMember partyMembers, int partyMemberIndex) {
+        this.partyMembers[partyMemberIndex] = partyMembers;
+    }  
     
     //hashcode functions
     @Override

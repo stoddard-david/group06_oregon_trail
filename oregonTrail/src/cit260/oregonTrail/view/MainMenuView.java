@@ -45,7 +45,6 @@ public class MainMenuView {
             
         } while (!done);
         
-
     }
 
     private String getMenuOption() {
@@ -98,11 +97,11 @@ public class MainMenuView {
 
     private void startNewGame() {
         // create a new game
-        GameControl.createNewGame(OregonTrail.getPlayer());
+        GameControl.createNewGame();
         
         // display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        ProfessionMenuView professionMenu = new ProfessionMenuView();
+        professionMenu.displayProfessionMenuView();
     }
 
     private void startExistingGame() {

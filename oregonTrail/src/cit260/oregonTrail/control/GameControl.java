@@ -6,6 +6,8 @@
 package cit260.oregonTrail.control;
 
 import cit260.oregonTrail.model.Player;
+import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.PartyLeader;
 import java.util.Random;
 import oregontrail.OregonTrail;
 /**
@@ -13,10 +15,6 @@ import oregontrail.OregonTrail;
  * @author dglinzey
  */
 public class GameControl {
-    
-    public static void createNewGame(Player player) {
-        System.out.println("\n*** called createNewGame function ***");
-    }
     
     public static void saveGame(int id) {
         
@@ -105,6 +103,37 @@ public class GameControl {
         OregonTrail.setPlayer(player); // save the player
         
         return player;
+    }
+    
+    public static void createNewGame() {
+        Game game = new Game();
+       
+        OregonTrail.setCurrentGame(game);
+    }
+
+    public static void setGameProfession(int profession) {
+        // create a new game
+        Game game = OregonTrail.getCurrentGame();
+        PartyLeader partyLeader = new PartyLeader();
+
+        partyLeader.setProfession(profession);
+
+        switch (profession) {
+            case 1: 
+               partyLeader.setMoneyAmount(1600);
+               break;
+            case 2: 
+               partyLeader.setMoneyAmount(800);
+               break;
+            case 3:
+               partyLeader.setMoneyAmount(400);
+               break;
+            default:
+               partyLeader.setMoneyAmount(0);
+               break;
+        }
+        
+        game.setPartyLeader(partyLeader);
     }
     
 }
