@@ -7,7 +7,6 @@ package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.PartyMember;
-import java.util.Arrays;
 import java.util.Scanner;
 import oregontrail.OregonTrail;
 
@@ -21,9 +20,9 @@ public class PartyCreationMenuView {
     private String prompt;
     
     public PartyCreationMenuView() {
+        //An array is used, so the seperate strings can be adjusted
         this.menu = new String[7];
-        this.menu[0] = "\n"
-                     + "\n-------------------------------------------"
+        this.menu[0] = "\n-------------------------------------------"
                      + "\n| Party Creation                          |"
                      + "\n-------------------------------------------";
         this.menu[1] = "1 ";
@@ -33,30 +32,35 @@ public class PartyCreationMenuView {
         this.menu[5] = "5 ";
         this.menu[6] = "-------------------------------------------";
         
+        //Sets the prompt for the intail request
         prompt = "\nPlease enter party leader's name: ";
     }
     
     public void displayPartyCreationMenuView() {
         
         boolean done = false; // set flag to not done
-        
-        int memberIndex = 0;
+        int memberIndex = 0;  // keeps track of the party member index
         
         do {
-            // prompt for and get players name
+            // prompt for and get party members name name
             String menuOption = this.getMemberName();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
                 return; // exit the game
             
             // do the requested save the members name
             done = this.doAction(menuOption, memberIndex);
-            if (memberIndex < 5) {
+            
+            //Checks for a valid return and if goes to next if there is one
+            if (memberIndex < 4 && done) {
                 memberIndex++;
                 prompt = "\nPlease enter next party member's name: ";
                 done = false;
             }
             
         } while (!done);
+
+        //Go to the next view when done
+        displayNextView();
     }
 
     private String getMemberName() {
@@ -100,10 +104,6 @@ public class PartyCreationMenuView {
         game.setPartyMembers(partyMember, memberIndex);
         
         this.menu[memberIndex + 1] = this.menu[memberIndex + 1] + " " + memberName;
-        
-        if(memberIndex == 4) {
-            displayNextView();
-        }
         
         return true; // success !
     }    
