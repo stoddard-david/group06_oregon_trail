@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.view.StoreQuantityView;
 /**
  *
  * @author dglinzey
@@ -62,4 +63,6 @@ public class InventoryControl {
         
         return foodConsumed;
     }
+            
+    
 }
