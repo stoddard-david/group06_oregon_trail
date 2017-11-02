@@ -35,10 +35,10 @@ public class ChangePaceView {
         
      boolean done = false; // set flag to not done
         do {
-            // prompt for and get players name
+            // prompt for and get players input
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the game
+                return; // exit the view
             
             // do the requested action and display the next view
             done = this.doAction(menuOption);
@@ -74,15 +74,12 @@ public class ChangePaceView {
         switch (choice) {
             case "1": // set pace to "Steady"
                GameControl.changePace(1);
-               this.displayNextView();
                break;
             case "2": // set pace to "Strenuous"
                GameControl.changePace(2);
-               this.displayNextView();
                break;
             case "3": // set pace to "Grueling"
                GameControl.changePace(3);
-               this.displayNextView();
                break;
             default:
                System.out.println("\n*** Invalid selection *** Try again");
@@ -92,8 +89,4 @@ public class ChangePaceView {
         return false;
     }
 
-    private void displayNextView() {
-        GameMenuView gameControlMenu = new GameMenuView();
-        gameControlMenu.displayGameMenu();
-    }
 }

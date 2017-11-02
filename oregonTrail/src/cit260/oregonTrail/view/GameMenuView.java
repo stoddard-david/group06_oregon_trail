@@ -30,11 +30,11 @@ public class GameMenuView {
     
     public void displayGameMenu() {
         
-        
-        String path = Thread.currentThread().getStackTrace()[3].getClassName();
-        String segments[] = path.split("\\.");
-        String className = segments[segments.length-1];
-        System.out.println(className);
+//        // gets class name of calling function in order to dynamically return to origin point in game
+//        String path = Thread.currentThread().getStackTrace()[3].getClassName(); //gets whole path of calling class
+//        String segments[] = path.split("\\."); // splits path into sub paths
+//        String className = segments[segments.length-1]; // isolates the view that called this function
+//        System.out.println(className);
         
     
         
