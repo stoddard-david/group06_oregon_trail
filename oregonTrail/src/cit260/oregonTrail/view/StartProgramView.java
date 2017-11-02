@@ -58,8 +58,10 @@ public class StartProgramView {
         
             // do requested action and display next view
             done = this.doAction(playersName);
+        
                     
         } while (!done);
+    
     }
 
     private String getPlayersName() {

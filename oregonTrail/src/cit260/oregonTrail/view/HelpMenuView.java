@@ -32,10 +32,10 @@ public class HelpMenuView {
         
         boolean done = false; // set flag to not done
         do {
-            // prompt for and get players name
+            // prompt for and get players input
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the game
+                return; // exit the menu
             
             
             // do the requested action and display the next view

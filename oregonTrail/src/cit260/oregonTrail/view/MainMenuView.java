@@ -25,7 +25,8 @@ public class MainMenuView {
                   + "\n1 - Start new game"
                   + "\n2 - Get and start saved game"
                   + "\n3 - Get help on how to play the game"
-                  + "\n4 - Save game"
+                  + "\n4 - Game controls"
+                  + "\n5 - Save game"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------";
     }
@@ -85,6 +86,9 @@ public class MainMenuView {
                 this.displayHelpMenu();
                 break;
             case "4": // save the current game
+                this.displayGameMenu();
+                break;
+            case "5": // save the current game
                 this.saveGame();
                 break;
             default:
@@ -111,6 +115,11 @@ public class MainMenuView {
     private void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.displayHelpMenu();
+    }
+    
+    private void displayGameMenu() {
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayGameMenu();
     }
 
     private void saveGame() {

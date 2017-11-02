@@ -5,49 +5,45 @@
  */
 package cit260.oregonTrail.view;
 
-import java.util.Arrays;
+import cit260.oregonTrail.control.GameControl;
 import java.util.Scanner;
 
 /**
  *
  * @author erinsmith
  */
-public class GameMenuView {
-
+public class ChangePaceView {
+    
     private String menu;
     
-    public GameMenuView() {
+    public ChangePaceView() {
         this.menu = "\n"
                   + "\n-------------------------------------------"
-                  + "\n| Game Controls                               |"
+                  + "\n| Change your pace of travel                |"
                   + "\n-------------------------------------------"
-                  + "\n1 - Turn sound on/off"
-                  + "\n2 - Change pace"
-                  + "\n3 - Change rations"
-                  + "\nQ - Quit game controls"
+                  + "\n1 - Steady --You travel 8 hours a day. You take many rests and rarely get very tired."
+                  + "\n2 - Strenuous --You travel 12 hours a day, starting at sunrise and stopping at"
+                  + "\nsunset. You stop to rest only when you must. You finish each day very tired."
+                  + "\n3 - Grueling --You travel 16 hours a day, starting before sunrise and continuing"
+                  + "\nuntil dark. You rarely rest and you don't get enough sleep. You finish each"
+                  + "\nday exhausted and your health suffers."
+                  + "\nQ - Quit"
                   + "\n-------------------------------------------"; 
     }
-    
-    public void displayGameMenu() {
+
+    void displayChangePaceMenuView() {
         
-        
-        String path = Thread.currentThread().getStackTrace()[3].getClassName();
-        String segments[] = path.split("\\.");
-        String className = segments[segments.length-1];
-        System.out.println(className);
-        
-    
-        
-        boolean done = false; // set flag to not done
+     boolean done = false; // set flag to not done
         do {
-            // prompt for and get player's input
+            // prompt for and get players name
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the menu
+                return; // exit the game
             
             // do the requested action and display the next view
             done = this.doAction(menuOption);
-        } while (!done);
+            
+        } while (!done);      
     }
     
     private String getMenuOption() {
@@ -63,10 +59,9 @@ public class GameMenuView {
             
             if (value.length() <1) { // value is blank
                 System.out.println("\nInvalid value: value can not be blank");
-                continue;
+            } else {            
+                valid = true; // end the loop
             }
-            
-            break; // end the loop
         }
         
         return value; // return the value entered
@@ -77,37 +72,28 @@ public class GameMenuView {
         choice = choice.toUpperCase(); // convert choice to upper case
         
         switch (choice) {
-            case "1": // turn sound on and off
-                this.toggleSound();
-                break;
-            case "2": // change travel pace
-                this.changePace();
-                break;
-            case "3": // change food rations
-                this.changeRations();
-                break;
+            case "1": // set pace to "Steady"
+               GameControl.changePace(1);
+               this.displayNextView();
+               break;
+            case "2": // set pace to "Strenuous"
+               GameControl.changePace(2);
+               this.displayNextView();
+               break;
+            case "3": // set pace to "Grueling"
+               GameControl.changePace(3);
+               this.displayNextView();
+               break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
-                break;
+               System.out.println("\n*** Invalid selection *** Try again");
+               break;
         }
         
         return false;
     }
-    
-  
-    private void toggleSound() {
-        System.out.println("*** toggleSound function called ***");
-    }
 
-    private void changePace() {
-        //display change pace menu
-        ChangePaceView changePaceView = new ChangePaceView();
-        changePaceView.displayChangePaceMenuView();
+    private void displayNextView() {
+        GameMenuView gameControlMenu = new GameMenuView();
+        gameControlMenu.displayGameMenu();
     }
-    
-    private void changeRations() {
-        System.out.println("*** changeRations function called ***");
-    }
-    
-
 }
