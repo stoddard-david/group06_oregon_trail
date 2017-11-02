@@ -57,11 +57,12 @@ public class StoreQuantityView {
         return value; // return the value entered
     }
 
-    private void doAction(int menuOption) {
+    private boolean doAction(int menuOption) {
         
         //get quantity
         int quantity = menuOption;
         this.updateSupplies();
+        return true;
     }
 
     private void updateSupplies() {
