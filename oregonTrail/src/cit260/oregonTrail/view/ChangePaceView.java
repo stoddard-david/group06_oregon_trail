@@ -5,43 +5,45 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.control.GameControl;
 import java.util.Scanner;
 
 /**
  *
  * @author erinsmith
  */
-public class HelpMenuView {
+public class ChangePaceView {
     
     private String menu;
-
-    public HelpMenuView() {
+    
+    public ChangePaceView() {
         this.menu = "\n"
                   + "\n-------------------------------------------"
-                  + "\n| Help Menu                               |"
+                  + "\n| Change your pace of travel                |"
                   + "\n-------------------------------------------"
-                  + "\n1 - How to move"
-                  + "\n2 - How to hunt"
-                  + "\n3 - How do I increase health"
-                  + "\n4 - How do I cross a river"
-                  + "\nQ - Quit help menu"
-                  + "\n-------------------------------------------";
+                  + "\n1 - Steady --You travel 8 hours a day. You take many rests and rarely get very tired."
+                  + "\n2 - Strenuous --You travel 12 hours a day, starting at sunrise and stopping at"
+                  + "\nsunset. You stop to rest only when you must. You finish each day very tired."
+                  + "\n3 - Grueling --You travel 16 hours a day, starting before sunrise and continuing"
+                  + "\nuntil dark. You rarely rest and you don't get enough sleep. You finish each"
+                  + "\nday exhausted and your health suffers."
+                  + "\nQ - Quit"
+                  + "\n-------------------------------------------"; 
     }
-    
-    public void displayHelpMenu() {
+
+    void displayChangePaceMenuView() {
         
-        boolean done = false; // set flag to not done
+     boolean done = false; // set flag to not done
         do {
             // prompt for and get players input
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the menu
-            
+                return; // exit the view
             
             // do the requested action and display the next view
             done = this.doAction(menuOption);
             
-        } while (!done);
+        } while (!done);      
     }
     
     private String getMenuOption() {
@@ -57,10 +59,9 @@ public class HelpMenuView {
             
             if (value.length() <1) { // value is blank
                 System.out.println("\nInvalid value: value can not be blank");
-                continue;
+            } else {            
+                valid = true; // end the loop
             }
-            
-            break; // end the loop
         }
         
         return value; // return the value entered
@@ -71,41 +72,21 @@ public class HelpMenuView {
         choice = choice.toUpperCase(); // convert choice to upper case
         
         switch (choice) {
-            case "1": // how to move
-               this.howMove();
+            case "1": // set pace to "Steady"
+               GameControl.changePace(1);
                break;
-            case "2": // how to hunt
-                this.howHunt();
-                break;
-            case "3": // increase health
-                this.howHealth();
-                break;
-            case "4": // crossing a river
-                this.howRiver();
-                break;
+            case "2": // set pace to "Strenuous"
+               GameControl.changePace(2);
+               break;
+            case "3": // set pace to "Grueling"
+               GameControl.changePace(3);
+               break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
-                break;
+               System.out.println("\n*** Invalid selection *** Try again");
+               break;
         }
         
         return false;
     }
 
-    private void howMove() {
-        System.out.println("*** howMove function called ***");
-    }
-
-    private void howHunt() {
-        System.out.println("*** howHunt function called ***");
-    }
-
-    private void howHealth() {
-        System.out.println("*** howHealth function called ***");
-    }
-
-    private void howRiver() {
-        System.out.println("*** howRiver function called ***");
-    }
-
 }
-    

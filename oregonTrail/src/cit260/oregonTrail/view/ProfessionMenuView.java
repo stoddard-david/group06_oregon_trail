@@ -18,7 +18,7 @@ public class ProfessionMenuView {
     public ProfessionMenuView() {
         this.menu = "\n"
                   + "\n-------------------------------------------"
-                  + "\n| Many kinds of peopel made the trip to   |"
+                  + "\n| Many kinds of people made the trip to   |"
                   + "\n| Oregon. Who will you be?                |"
                   + "\n-------------------------------------------"
                   + "\n1 - Be a banker from Boston"
@@ -33,15 +33,16 @@ public class ProfessionMenuView {
         
         boolean done = false; // set flag to not done
         do {
-            // prompt for and get players name
+            // prompt for and get profession option
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // user wants to quit
                 return; // exit the game
             
-            // do the requested action and display the next view
+            // set the action is called to set the profession
             done = this.doAction(menuOption);
             
         } while (!done);
+        
     }
     
     private String getMenuOption() {
@@ -67,30 +68,34 @@ public class ProfessionMenuView {
 
     private boolean doAction(String choice) {
         
+        boolean valid = true; //Stores if a valid option is choosen
         choice = choice.toUpperCase(); // convert choice to upper case
         
         switch (choice) {
-            case "1": // create and start a new game
+            case "1": // Set the money and profession to banker
                GameControl.setGameProfession(1);
                displayNextView();
                break;
-            case "2": // get and start an existing game
+            case "2": // Set the money and profession to carpenter
                GameControl.setGameProfession(2);
                displayNextView();
                break;
-            case "3": // display the help menu
+            case "3": // Set the money and profession to farmer
                GameControl.setGameProfession(3);
                displayNextView();
                break;
-            case "4": // save the current game
-               GameControl.setGameProfession(4);
+            case "4": // View a help screen
+               viewProfessionHelp();
+               valid = false; //Sets the to invalid, so you can choose a valid profession
                break;
             default:
                System.out.println("\n*** Invalid selection *** Try again");
+               valid = false; //Sets the answer to invalid answer to return
                break;
         }
         
-        return false;
+        //Return if a valid choice was picked
+        return valid;
     }
     
     private void viewProfessionHelp() {
@@ -107,11 +112,11 @@ public class ProfessionMenuView {
             + "\n-------------------------------------------"
             + "\n"
             + "\nPress any key to continue";
-        String value = ""; // value to be returned. Just to make sure a key is pressed
+        String value = ""; // value to be returned. Used to make sure a key is pressed
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        System.out.println(helpProfession);
-        value = keyboard.nextLine(); // get next line typed on keyboard
+        System.out.println(helpProfession); //Print the help
+        value = keyboard.nextLine(); // get next line typed on keyboard, used to pause
     }
     
     private void displayNextView() {
