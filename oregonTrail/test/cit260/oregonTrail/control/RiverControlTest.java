@@ -47,6 +47,32 @@ public class RiverControlTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
+        
+        System.out.println("calcRiverSuccess3");
+        currentDepth = 2;
+        minDepth = 1;
+        maxDepth = 30;
+        currentWidth = 800;
+        minWidth = 1;
+        maxWidth = 200;
+        expResult = false;
+        result = RiverControl.calcRiverSuccess(currentDepth, maxDepth, currentWidth, maxWidth);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+        
+        System.out.println("calcRiverSuccess4");
+        currentDepth = 200;
+        minDepth = 1;
+        maxDepth = 30;
+        currentWidth = 50;
+        minWidth = 1;
+        maxWidth = 200;
+        expResult = false;
+        result = RiverControl.calcRiverSuccess(currentDepth, maxDepth, currentWidth, maxWidth);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
     
 }
