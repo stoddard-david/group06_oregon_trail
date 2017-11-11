@@ -83,6 +83,11 @@ public class PartyCreationMenuView extends View {
     }    
     
     private void displayNextView() {
-        System.out.println("\n**** displayNextView *****");
+        
+        // Create MainMenuView object
+        StoreMenuView storeMenuView = new StoreMenuView();
+                
+        // Display the main menu view
+        storeMenuView.display();
     }
 }

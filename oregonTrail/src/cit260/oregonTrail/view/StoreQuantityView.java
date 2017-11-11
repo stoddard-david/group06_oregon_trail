@@ -47,8 +47,8 @@ public class StoreQuantityView {
         while (!valid) { // loop while an invalid value is entered
             System.out.println("\n" + this.menu);
                         
-            if (value >= 0) { // value is blank
-                System.out.println("\nInvalid value: value can not be blank");
+            if (value < 0) { // value is blank
+                System.out.println("\nInvalid value: value can not be negative");
             } else {            
                 valid = true; // end the loop
             }
