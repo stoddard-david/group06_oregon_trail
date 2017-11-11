@@ -67,7 +67,7 @@ public class StoreQuantityView {
 
     private void updateSupplies() {
         StoreMenuView storeMenuView = new StoreMenuView();
-        storeMenuView.displayStoreMenuView();
+        storeMenuView.display();
     }
 
 }
