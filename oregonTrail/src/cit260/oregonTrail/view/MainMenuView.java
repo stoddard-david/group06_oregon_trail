@@ -68,7 +68,7 @@ public class MainMenuView extends View {
         
         // display the game menu
         ProfessionMenuView professionMenu = new ProfessionMenuView();
-        professionMenu.displayProfessionMenuView();
+        professionMenu.display();
     }
 
     private void startExistingGame() {

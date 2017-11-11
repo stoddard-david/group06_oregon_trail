@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.control.GameControl;
 import java.util.Scanner;
 
@@ -12,11 +13,11 @@ import java.util.Scanner;
  *
  * @author Stoddard
  */
-public class ProfessionMenuView {
+public class ProfessionMenuView extends View {
     private String menu;
     
     public ProfessionMenuView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n-------------------------------------------"
                   + "\n| Many kinds of people made the trip to   |"
                   + "\n| Oregon. Who will you be?                |"
@@ -26,47 +27,11 @@ public class ProfessionMenuView {
                   + "\n3 - Be a farmer from Illinois"
                   + "\n4 - Find out the differences between the choices"
                   + "\nQ - Quit"
-                  + "\n-------------------------------------------";
-    }
-    
-    public void displayProfessionMenuView() {
-        
-        boolean done = false; // set flag to not done
-        do {
-            // prompt for and get profession option
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the game
-            
-            // set the action is called to set the profession
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-    }
-    
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = ""; // value to be returned
-        boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
-            
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
-            
-            if (value.length() <1) { // value is blank
-                System.out.println("\nInvalid value: value can not be blank");
-            } else {            
-                valid = true; // end the loop
-            }
-        }
-        
-        return value; // return the value entered
+                  + "\n-------------------------------------------");
     }
 
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         boolean valid = true; //Stores if a valid option is choosen
         choice = choice.toUpperCase(); // convert choice to upper case
@@ -125,6 +90,6 @@ public class ProfessionMenuView {
         PartyCreationMenuView partyCreationMenuView = new PartyCreationMenuView();
                 
         // Display the main menu view
-        partyCreationMenuView.displayPartyCreationMenuView();
+        partyCreationMenuView.display();
     }
 }
