@@ -65,7 +65,8 @@ public class GameMenuView extends View{
     }
     
     private void changeRations() {
-        System.out.println("*** changeRations function called ***");
+        ChangeRationsView changeRationsView = new ChangeRationsView();
+        changeRationsView.display();
     }
     
 
