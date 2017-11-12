@@ -41,7 +41,7 @@ public class StoreQuantityView {
 
     private int getMenuOption() {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int value = 0; // value to be returned
+        int value = keyboard.nextInt(); // value to be returned
         boolean valid = false; // initialize to not valid
         
         while (!valid) { // loop while an invalid value is entered
