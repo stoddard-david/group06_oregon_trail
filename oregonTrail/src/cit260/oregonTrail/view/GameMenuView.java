@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -12,67 +13,24 @@ import java.util.Scanner;
  *
  * @author erinsmith
  */
-public class GameMenuView {
+public class GameMenuView extends View{
 
-    private String menu;
     
     public GameMenuView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n-------------------------------------------"
-                  + "\n| Game Controls                               |"
+                  + "\n| Game Controls                           |"
                   + "\n-------------------------------------------"
                   + "\n1 - Turn sound on/off"
                   + "\n2 - Change pace"
                   + "\n3 - Change rations"
                   + "\nQ - Quit game controls"
-                  + "\n-------------------------------------------"; 
+                  + "\n-------------------------------------------"); 
     }
     
-    public void displayGameMenu() {
-        
-//        // gets class name of calling function in order to dynamically return to origin point in game
-//        String path = Thread.currentThread().getStackTrace()[3].getClassName(); //gets whole path of calling class
-//        String segments[] = path.split("\\."); // splits path into sub paths
-//        String className = segments[segments.length-1]; // isolates the view that called this function
-//        System.out.println(className);
-        
     
-        
-        boolean done = false; // set flag to not done
-        do {
-            // prompt for and get player's input
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the menu
-            
-            // do the requested action and display the next view
-            done = this.doAction(menuOption);
-        } while (!done);
-    }
-    
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        String value = ""; // value to be returned
-        boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
-            
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
-            
-            if (value.length() <1) { // value is blank
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break; // end the loop
-        }
-        
-        return value; // return the value entered
-    }
-    
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase(); // convert choice to upper case
         
@@ -96,13 +54,14 @@ public class GameMenuView {
     
   
     private void toggleSound() {
-        System.out.println("*** toggleSound function called ***");
+        SoundToggleView soundToggleView = new SoundToggleView();
+        soundToggleView.display();
     }
 
     private void changePace() {
         //display change pace menu
         ChangePaceView changePaceView = new ChangePaceView();
-        changePaceView.displayChangePaceMenuView();
+        changePaceView.display();
     }
     
     private void changeRations() {
