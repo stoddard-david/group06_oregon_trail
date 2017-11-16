@@ -77,11 +77,10 @@ public class ProfessionMenuView extends View {
             + "\n-------------------------------------------"
             + "\n"
             + "\nPress any key to continue";
-        String value = ""; // value to be returned. Used to make sure a key is pressed
         
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
         System.out.println(helpProfession); //Print the help
-        value = keyboard.nextLine(); // get next line typed on keyboard, used to pause
+        keyboard.nextLine(); // get next line typed on keyboard, used to pause
     }
     
     private void displayNextView() {

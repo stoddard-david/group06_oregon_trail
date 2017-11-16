@@ -61,6 +61,8 @@ public class PartyCreationMenuView extends View {
         
         PartyMember partyMember = new PartyMember();
         partyMember.setName(choice);
+        partyMember.setHealth(100);
+        partyMember.setStatus(1);
         
         Game game = OregonTrail.getCurrentGame();
         game.setPartyMembers(partyMember, this.memberIndex);
@@ -85,9 +87,9 @@ public class PartyCreationMenuView extends View {
     private void displayNextView() {
         
         // Create MainMenuView object
-        StoreMenuView storeMenuView = new StoreMenuView();
+        StartDateView startDateView = new StartDateView();
                 
         // Display the main menu view
-        storeMenuView.display();
+        startDateView.display();
     }
 }
