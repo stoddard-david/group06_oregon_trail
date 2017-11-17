@@ -5,7 +5,6 @@
  */
 package cit260.oregonTrail.model;
 
-import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,16 +16,17 @@ public class Location implements Serializable {
     
     //class instance variables
     private String name;
-    private Point coordinates;
+    private int coordinateWidth;
+    private int coordinateHeight;
+    private boolean visited;
     private String type;
     private int order;
 
     //Constructor
-    public Location(String name, Point coordinates, String type, int order) {
-        this.name = name;
-        this.coordinates = coordinates;
-        this.type = type;
-        this.order = order;
+    public Location(int coordinateWidth, int coordinateHeight) {
+        this.coordinateWidth = coordinateWidth;
+        this.coordinateHeight = coordinateHeight;
+        this.visited = false;
     }
 
     //Getter and Setter
@@ -38,14 +38,30 @@ public class Location implements Serializable {
         this.name = name;
     }
 
-    public Point getCoordinates() {
-        return coordinates;
+    public int getCoordinateWidth() {
+        return coordinateWidth;
     }
 
-    public void setCoordinates(Point coordinates) {
-        this.coordinates = coordinates;
+    public void setCoordinateWidth(int coordinateWidth) {
+        this.coordinateWidth = coordinateWidth;
     }
 
+    public int getCoordinateHeight() {
+        return coordinateHeight;
+    }
+
+    public void setCoordinateHeight(int coordinateHeight) {
+        this.coordinateHeight = coordinateHeight;
+    }
+
+    public boolean visited() {
+        return visited;
+    }
+
+    public void setvisited(boolean visited) {
+        this.visited = visited;
+    }
+    
     public String getType() {
         return type;
     }
@@ -67,7 +83,8 @@ public class Location implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.coordinates);
+        hash = 53 * hash + Objects.hashCode(this.coordinateWidth);
+        hash = 53 * hash + Objects.hashCode(this.coordinateHeight);
         hash = 53 * hash + Objects.hashCode(this.type);
         hash = 53 * hash + this.order;
         return hash;
@@ -95,7 +112,10 @@ public class Location implements Serializable {
         if (!Objects.equals(this.type, other.type)) {
             return false;
         }
-        if (!Objects.equals(this.coordinates, other.coordinates)) {
+        if (!Objects.equals(this.coordinateWidth, other.coordinateWidth)) {
+            return false;
+        }
+        if (!Objects.equals(this.coordinateHeight, other.coordinateHeight)) {
             return false;
         }
         return true;
@@ -104,7 +124,7 @@ public class Location implements Serializable {
     //toString
     @Override
     public String toString() {
-        return "Location{" + "name=" + name + ", coordinates=" + coordinates + ", type=" + type + ", order=" + order + '}';
+        return "Location{" + "name=" + name + ", coordinates=" + coordinateWidth + "," + coordinateHeight + ", type=" + type + ", order=" + order + '}';
     }
     
     

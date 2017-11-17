@@ -23,10 +23,13 @@ public class Game implements Serializable {
     private Player player;
     private PartyLeader partyLeader;
     private PartyMember[] partyMembers;
+    private InventoryItem[] items;
+    private Map map;
 
     //constructor
     public Game() {
         partyMembers = new PartyMember[5];
+        items = new InventoryItem[6];
     }
 
     //setter and getter functions
@@ -101,6 +104,22 @@ public class Game implements Serializable {
     
     public void setPartyMembers(PartyMember partyMembers, int partyMemberIndex) {
         this.partyMembers[partyMemberIndex] = partyMembers;
+    }
+    
+    public InventoryItem getInventoryItem(int itemIndex) {
+        return items[itemIndex];
+    }
+    
+    public void setInventoryItem(InventoryItem inventoryItem, int itemIndex) {
+        this.items[itemIndex] = inventoryItem;
+    }    
+
+    public Map getMap() {
+        return map;
+    }
+    
+    public void setMap(Map map) {
+        this.map = map;
     }  
     
     //hashcode functions

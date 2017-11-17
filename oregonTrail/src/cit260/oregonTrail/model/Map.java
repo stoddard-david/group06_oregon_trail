@@ -17,7 +17,7 @@ public class Map {
     //constructor
     public Map() {
     }
-    
+ 
     //setter and getter functions
     public int getHeight() {
         return height;

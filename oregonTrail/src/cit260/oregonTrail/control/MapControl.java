@@ -5,8 +5,11 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.model.Map;
 import java.util.Random;
 import cit260.oregonTrail.model.PartyMember;
+import cit260.oregonTrail.model.Location;
+import cit260.oregonTrail.model.RegularSceneType;
 
 /**
  *
@@ -71,5 +74,62 @@ public class MapControl {
 
         return distance;
     }
+    
+    public static Map createMap(int width, int height) {
+      
+        if (width < 0 || height < 0) {
+            return null;
+        }
+        
+        Map map = new Map();
+        map.setHeight(height);
+        map.setWidth(width);
+        
+        Location[][] locations = createLocations(width, height);
+        //locations = createLocations(noOfRows, noOfColumns)
+        
+        //Assign the locations array to the map
+        //scenes = createScenes()
+  
+        
+        return map;
+    }
 
+    private static Location[][] createLocations(int width, int height) {
+ 
+        if (width < 1 || height < 1) {
+            return null;
+        }
+        
+        Location[][] locations = new Location[width][height];
+        
+        for (int i=0; i < width; i++) {
+            for (int j=0; j < height; j++) {
+                locations[i][j] = new Location(i,j);
+            }
+        }
+
+        return locations; 
+    }
+    
+    private static RegularSceneType[] createScenes() {
+        //scenes = Create an array Scene objects
+        //scene1 = Create a new Scene object
+        //Assign values to each attribute in the Scene object
+        //Assign scene1 to its position in the scenes array
+        //scene2 = Create a new ConstructionScene object
+        //Assign values to each attribute in the Scene object
+        //Assign scene2 to its position in the scenes array
+        //scene2 = Create a new ResourceScene object
+        //Assign values to each attribute in the Scene object
+        //Assign scene2 to its position in the scenes array
+        RegularSceneType[] scenes = new RegularSceneType[7];  
+        
+        return scenes;
+    }
+
+    private static void assignScenesToLocations( RegularSceneType[] scenes, Location[][] locations) {
+        System.out.println("*** assignScenesToLocations function called ***");
+    }
+    
 }

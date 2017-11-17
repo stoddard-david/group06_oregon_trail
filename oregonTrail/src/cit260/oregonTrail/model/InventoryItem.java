@@ -14,19 +14,16 @@ import java.util.Objects;
  */
 public class InventoryItem implements Serializable{
  
-    
     // class instance variables
     private String inventoryType;
     private int maxAmount;
     private float baseCost;
     private int quantityOwned;
-    private Player player;
     
     // constructor
     public InventoryItem() {
     }
-    
-    
+   
     // getters and setters
     public String getInventoryType() {
         return inventoryType;
@@ -59,16 +56,6 @@ public class InventoryItem implements Serializable{
     public void setQuantityOwned(int quantityOwned) {
         this.quantityOwned = quantityOwned;
     }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-    
-    
 
     // equals() and hashCode()
     @Override

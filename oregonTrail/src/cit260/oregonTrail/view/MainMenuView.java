@@ -64,11 +64,14 @@ public class MainMenuView extends View {
 
     private void startNewGame() {
         // create a new game
-        GameControl.createNewGame();
-        
-        // display the game menu
-        ProfessionMenuView professionMenu = new ProfessionMenuView();
-        professionMenu.display();
+        boolean returnValue = GameControl.createNewGame(OregonTrail.getPlayer());
+        if (!returnValue) {
+            System.out.println("ERROR - Failed to create new game");
+        } else {
+            // display the game menu
+            ProfessionMenuView professionMenu = new ProfessionMenuView();
+            professionMenu.display();
+        }
     }
 
     private void startExistingGame() {

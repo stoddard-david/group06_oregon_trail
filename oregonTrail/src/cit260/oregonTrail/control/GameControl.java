@@ -7,6 +7,8 @@ package cit260.oregonTrail.control;
 
 import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
+import cit260.oregonTrail.model.InventoryType;
 import cit260.oregonTrail.model.PartyLeader;
 import java.util.Random;
 import oregontrail.OregonTrail;
@@ -105,12 +107,89 @@ public class GameControl {
         return player;
     }
     
-    public static void createNewGame() {
+    public static boolean createNewGame(Player player) {
+
+        if (player == null) {
+            return false;
+        }        
+        
         Game game = new Game();
-       
+        game.setPlayer(player);
         OregonTrail.setCurrentGame(game);
+   
+        InventoryItem[] items = createItems();
+        for (int i=0; i<items.length; i++) {
+            game.setInventoryItem(items[i], i);        
+        }
+        
+     
+        MapControl.createMap(5, 5);
+        //map = createMap(noOfRows, noOfColumns)
+        //IF map == null THEN
+        //RETURN -1
+        //ENDIF
+                
+        //Assign the map to the game
+        //RETURN 1 // indicates success*/
+        
+        return true;
     }
 
+    public static InventoryItem[] createItems() {
+        
+        // 1 - Flour - $1
+        // 2 - Meat - $5
+        // 3 - Water - $.50
+        // 4 - Oxen - $100
+        // 5 - Wagon Parts - $25
+        // 6 - Bullets - $10
+        InventoryItem[] items = new InventoryItem[6];
+
+        items[InventoryType.Flour.ordinal()] = new InventoryItem();
+        InventoryItem flour = items[InventoryType.Flour.ordinal()];
+        flour.setBaseCost((float) 1.00);
+        flour.setMaxAmount(200);
+        flour.setQuantityOwned(0);
+        flour.setInventoryType("Flour");
+
+        items[InventoryType.Meat.ordinal()] = new InventoryItem();
+        InventoryItem meat = items[InventoryType.Meat.ordinal()];
+        meat.setBaseCost((float) 5.00);
+        meat.setMaxAmount(1000);
+        meat.setQuantityOwned(0);
+        meat.setInventoryType("Meat");
+
+        items[InventoryType.Water.ordinal()] = new InventoryItem();
+        InventoryItem water = items[InventoryType.Water.ordinal()];
+        water.setBaseCost((float) 0.50);
+        water.setMaxAmount(1000);
+        water.setQuantityOwned(0);
+        water.setInventoryType("Water");
+
+        items[InventoryType.Oxen.ordinal()] = new InventoryItem();
+        InventoryItem oxen = items[InventoryType.Oxen.ordinal()];
+        oxen.setBaseCost((float) 100.00);
+        oxen.setMaxAmount(8);
+        oxen.setQuantityOwned(0);
+        oxen.setInventoryType("Oxen");
+
+        items[InventoryType.WagonParts.ordinal()] = new InventoryItem();
+        InventoryItem wagonParts = items[InventoryType.WagonParts.ordinal()];
+        wagonParts.setBaseCost((float) 25.00);
+        wagonParts.setMaxAmount(5);
+        wagonParts.setQuantityOwned(0);
+        wagonParts.setInventoryType("Wagon Parts");
+
+        items[InventoryType.Bullets.ordinal()] = new InventoryItem();
+        InventoryItem bullets = items[InventoryType.Bullets.ordinal()];
+        bullets.setBaseCost((float) 10.00);
+        bullets.setMaxAmount(1000);
+        bullets.setQuantityOwned(0);
+        bullets.setInventoryType("Bullets");
+        
+        return items;
+    }
+    
     public static void setGameProfession(int profession) {
         // create a new game
         Game game = OregonTrail.getCurrentGame();
