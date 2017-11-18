@@ -19,7 +19,7 @@ public class Location implements Serializable {
     private int coordinateWidth;
     private int coordinateHeight;
     private boolean visited;
-    private String type;
+    private RegularSceneType type;
     private int order;
 
     //Constructor
@@ -62,11 +62,11 @@ public class Location implements Serializable {
         this.visited = visited;
     }
     
-    public String getType() {
+    public RegularSceneType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(RegularSceneType type) {
         this.type = type;
     }
 

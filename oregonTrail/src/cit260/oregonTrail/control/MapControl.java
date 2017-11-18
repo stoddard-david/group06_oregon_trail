@@ -10,6 +10,7 @@ import java.util.Random;
 import cit260.oregonTrail.model.PartyMember;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.RegularSceneType;
+import cit260.oregonTrail.model.SceneType;
 
 /**
  *
@@ -76,7 +77,7 @@ public class MapControl {
     }
     
     public static Map createMap(int width, int height) {
-      
+     
         if (width < 0 || height < 0) {
             return null;
         }
@@ -86,17 +87,17 @@ public class MapControl {
         map.setWidth(width);
         
         Location[][] locations = createLocations(width, height);
-        //locations = createLocations(noOfRows, noOfColumns)
+        map.setLocation(locations);
         
-        //Assign the locations array to the map
-        //scenes = createScenes()
-  
-        
+        RegularSceneType[] scenes = createScenes();        
+         
+        assignScenesToLocations(scenes, locations);
+                
         return map;
     }
 
     private static Location[][] createLocations(int width, int height) {
- 
+
         if (width < 1 || height < 1) {
             return null;
         }
@@ -113,23 +114,98 @@ public class MapControl {
     }
     
     private static RegularSceneType[] createScenes() {
-        //scenes = Create an array Scene objects
-        //scene1 = Create a new Scene object
-        //Assign values to each attribute in the Scene object
-        //Assign scene1 to its position in the scenes array
-        //scene2 = Create a new ConstructionScene object
-        //Assign values to each attribute in the Scene object
-        //Assign scene2 to its position in the scenes array
-        //scene2 = Create a new ResourceScene object
-        //Assign values to each attribute in the Scene object
-        //Assign scene2 to its position in the scenes array
-        RegularSceneType[] scenes = new RegularSceneType[7];  
         
+        RegularSceneType[] scenes = new RegularSceneType[5];
+
+        scenes[SceneType.Town.ordinal()] = new RegularSceneType();
+        RegularSceneType town = scenes[SceneType.Town.ordinal()];
+        town.setDescription("You can purchase supplies and get advice.");
+        town.setIndex(SceneType.Town.ordinal());
+
+        scenes[SceneType.Trail.ordinal()] = new RegularSceneType();
+        RegularSceneType trail = scenes[SceneType.Trail.ordinal()];
+        trail.setDescription("You can hunt while on the trail.");
+        trail.setIndex(SceneType.Trail.ordinal());
+       
+        scenes[SceneType.River.ordinal()] = new RegularSceneType();
+        RegularSceneType river = scenes[SceneType.River.ordinal()];
+        river.setDescription("You must find a way to cross the river.");
+        river.setIndex(SceneType.River.ordinal());
+        
+        scenes[SceneType.Landmark.ordinal()] = new RegularSceneType();
+        RegularSceneType landmark = scenes[SceneType.Landmark.ordinal()];
+        landmark.setDescription("You can enjoy the area and get advice.");
+        landmark.setIndex(SceneType.Landmark.ordinal());
+
+        scenes[SceneType.End.ordinal()] = new RegularSceneType();
+        RegularSceneType end = scenes[SceneType.End.ordinal()];
+        end.setDescription("You have made it.");
+        end.setIndex(SceneType.End.ordinal());
+       
         return scenes;
     }
 
     private static void assignScenesToLocations( RegularSceneType[] scenes, Location[][] locations) {
-        System.out.println("*** assignScenesToLocations function called ***");
+
+        RegularSceneType town = scenes[SceneType.Town.ordinal()];
+        RegularSceneType trail = scenes[SceneType.Trail.ordinal()];
+        RegularSceneType river = scenes[SceneType.River.ordinal()];
+        RegularSceneType landmark = scenes[SceneType.Landmark.ordinal()];
+        RegularSceneType end = scenes[SceneType.End.ordinal()];
+
+        locations[8][51].setType(town);
+        locations[8][50].setType(trail);
+        locations[8][49].setType(trail);
+        locations[8][48].setType(trail);
+        locations[8][51].setType(town);
+        locations[8][47].setType(river);
+        locations[8][46].setType(trail);
+        locations[8][45].setType(river);
+        locations[8][44].setType(trail);
+        locations[7][43].setType(town);
+        locations[7][42].setType(trail);
+        locations[6][41].setType(trail);
+        locations[6][40].setType(landmark);
+        locations[6][39].setType(trail);
+        locations[6][38].setType(trail);
+        locations[6][37].setType(trail);
+        locations[6][36].setType(town);
+        locations[6][35].setType(trail);
+        locations[6][34].setType(trail);
+        locations[6][33].setType(trail);
+        locations[5][32].setType(trail);
+        locations[5][31].setType(landmark);
+        locations[5][30].setType(trail);
+        locations[5][29].setType(trail);
+        locations[5][28].setType(landmark);
+        locations[5][27].setType(trail);
+        locations[5][26].setType(river);
+        locations[5][25].setType(trail);
+        locations[5][24].setType(trail);
+        locations[5][23].setType(landmark);
+        locations[5][22].setType(trail);
+        locations[5][21].setType(trail);
+        locations[5][20].setType(town);
+        locations[5][19].setType(trail);
+        locations[5][18].setType(trail);
+        locations[5][17].setType(trail);
+        locations[5][16].setType(trail);
+        locations[5][15].setType(trail);
+        locations[4][14].setType(trail);
+        locations[4][13].setType(trail);
+        locations[4][12].setType(trail);
+        locations[3][11].setType(town);
+        locations[3][10].setType(river);
+        locations[3][9].setType(trail);
+        locations[3][8].setType(trail);
+        locations[2][7].setType(trail);
+        locations[2][6].setType(landmark);
+        locations[1][5].setType(trail);
+        locations[1][4].setType(landmark);
+        locations[1][3].setType(trail);
+        locations[1][2].setType(trail);
+        locations[1][1].setType(end);
+                
     }
     
 }

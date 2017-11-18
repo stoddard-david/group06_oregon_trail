@@ -24,6 +24,8 @@ public class GameMenuView extends View{
                   + "\n1 - Turn sound on/off"
                   + "\n2 - Change pace"
                   + "\n3 - Change rations"
+                  + "\n4 - View Map"
+                  + "\n5 - View Inventory"
                   + "\nQ - Quit game controls"
                   + "\n-------------------------------------------"); 
     }
@@ -43,6 +45,12 @@ public class GameMenuView extends View{
                 break;
             case "3": // change food rations
                 this.changeRations();
+                break;
+            case "4": // view map
+                this.viewMap();
+                break;
+            case "5": // view inventory
+                this.viewInventory();
                 break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -68,6 +76,19 @@ public class GameMenuView extends View{
         ChangeRationsView changeRationsView = new ChangeRationsView();
         changeRationsView.display();
     }
+
+    private void viewMap() {
+        MapView map = new MapView();
+        map.displayMapView();
+        
+        
+    }
+
+    private void viewInventory() {
+        System.out.println("*** viewInventory function called ***");
+    }
+
+
     
 
 }

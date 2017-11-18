@@ -9,6 +9,7 @@ import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.model.InventoryType;
+import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.model.PartyLeader;
 import java.util.Random;
 import oregontrail.OregonTrail;
@@ -122,15 +123,13 @@ public class GameControl {
             game.setInventoryItem(items[i], i);        
         }
         
-     
-        MapControl.createMap(5, 5);
-        //map = createMap(noOfRows, noOfColumns)
-        //IF map == null THEN
-        //RETURN -1
-        //ENDIF
+        Map map = MapControl.createMap(10, 53);
+
+        if (map == null) {
+          return false;
+        }
                 
-        //Assign the map to the game
-        //RETURN 1 // indicates success*/
+        game.setMap(map);
         
         return true;
     }

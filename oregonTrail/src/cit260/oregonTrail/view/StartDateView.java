@@ -95,10 +95,10 @@ public class StartDateView extends View {
     
     private void displayNextView() {
         
-        // Create MainMenuView object
-        StoreMenuView storeMenuView = new StoreMenuView();
+        // Create GameMenuView object
+        GameMenuView gameMenuView = new GameMenuView();
                 
-        // Display the main menu view
-        storeMenuView.display();
+        // Display the game menu view
+        gameMenuView.display();
     }    
 }

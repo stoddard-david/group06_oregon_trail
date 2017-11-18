@@ -13,6 +13,7 @@ public class Map {
     
     private int height;
     private int width;
+    private Location[][] locations;
 
     //constructor
     public Map() {
@@ -33,6 +34,14 @@ public class Map {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+    
+    public Location[][] getLocation() {
+        return locations;
+    }
+
+    public void setLocation(Location[][] locations) {
+        this.locations= locations;
     }
 
     //hashcode functions

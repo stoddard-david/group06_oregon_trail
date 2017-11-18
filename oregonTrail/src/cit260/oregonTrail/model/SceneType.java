@@ -10,11 +10,9 @@ package cit260.oregonTrail.model;
  * @author Stoddard
  */
 public enum SceneType {
-    Hunting,
-    Store,
-    Advice,
+    Town,
+    Trail,
     River,
-    TopTen,
-    Help,
-    Finish;    
+    Landmark,
+    End;
 }
