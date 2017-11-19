@@ -102,6 +102,10 @@ public class Game implements Serializable {
         return partyMembers[partyMemberIndex];
     }
     
+    public PartyMember[] getPartyMembers() {
+        return partyMembers;
+    }
+    
     public void setPartyMembers(PartyMember partyMembers, int partyMemberIndex) {
         this.partyMembers[partyMemberIndex] = partyMembers;
     }

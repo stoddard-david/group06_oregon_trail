@@ -8,6 +8,7 @@ package cit260.oregonTrail.view;
 import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.PartyMember;
+import java.util.Random;
 import java.util.Scanner;
 import oregontrail.OregonTrail;
 
@@ -61,7 +62,12 @@ public class PartyCreationMenuView extends View {
         
         PartyMember partyMember = new PartyMember();
         partyMember.setName(choice);
-        partyMember.setHealth(100);
+        //partyMember.setHealth(100);
+        
+        //Random Health for testing party view
+        Random rand = new Random();
+        partyMember.setHealth(rand.nextInt(101));
+        
         partyMember.setStatus(1);
         
         Game game = OregonTrail.getCurrentGame();

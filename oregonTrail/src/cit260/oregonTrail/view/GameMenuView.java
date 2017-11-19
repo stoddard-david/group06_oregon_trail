@@ -26,6 +26,7 @@ public class GameMenuView extends View{
                   + "\n3 - Change rations"
                   + "\n4 - View Map"
                   + "\n5 - View Inventory"
+                  + "\n6 - View Party Members"
                   + "\nQ - Quit game controls"
                   + "\n-------------------------------------------"); 
     }
@@ -51,6 +52,9 @@ public class GameMenuView extends View{
                 break;
             case "5": // view inventory
                 this.viewInventory();
+                break;
+            case "6": //view party members
+                this.viewPartyMembers();
                 break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -80,15 +84,16 @@ public class GameMenuView extends View{
     private void viewMap() {
         MapView map = new MapView();
         map.displayMapView();
-        
-        
     }
 
     private void viewInventory() {
         System.out.println("*** viewInventory function called ***");
     }
 
-
+    private void viewPartyMembers() {
+        PartyMemberView party = new PartyMemberView();
+        party.display();
+    }
     
 
 }
