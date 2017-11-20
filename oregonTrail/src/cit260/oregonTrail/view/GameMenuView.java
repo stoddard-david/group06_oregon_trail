@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.control.InventoryControl;
 import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -87,7 +88,8 @@ public class GameMenuView extends View{
     }
 
     private void viewInventory() {
-        System.out.println("*** viewInventory function called ***");
+        InventoryControl low = new InventoryControl();
+        low.lowInventory();
     }
 
     private void viewPartyMembers() {

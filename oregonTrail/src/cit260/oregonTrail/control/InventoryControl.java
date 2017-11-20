@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.view.StoreQuantityView;
 /**
  *
@@ -63,6 +64,26 @@ public class InventoryControl {
         
         return foodConsumed;
     }
-            
+    
+    public static String lowInventory(InventoryItem[] inventoryItems) {
+        
+        InventoryItem tempItem = new InventoryItem();
+        
+        int minQuantity = 1000;
+        String item = "";
+        
+        for (int i = 0; i < InventoryItem.length; i++) {
+            if (InventoryItem.getInventoryQuantity[i] < minQuantity) {
+                minQuantity = InventoryItem.getInventoryQuantity[i];
+                item = "Your inventory of " + inventoryItem.getInventoryType[i] +
+                        " is at just" + minQuantity + " kind of low..."
+            }
+        }
+        return item;
+    }
+
+    public void lowInventory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

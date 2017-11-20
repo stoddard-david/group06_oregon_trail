@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author erinsmith
  */
 public class InventoryItem implements Serializable{
- 
+
     // class instance variables
     private String inventoryType;
     private int maxAmount;
