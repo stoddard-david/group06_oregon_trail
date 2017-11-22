@@ -41,12 +41,19 @@ public class StoreQuantityView {
 
     private int getMenuOption() {
         Scanner keyboard = new Scanner(System.in); //get infile for keyboard
-        int value = keyboard.nextInt(); // value to be returned
+        String valueString = "";
+        int value = 0;
+        
         boolean valid = false; // initialize to not valid
         
         while (!valid) { // loop while an invalid value is entered
             System.out.println("\n" + this.menu);
-                        
+            valueString = keyboard.nextLine(); // value to be returned
+            try {
+                value = Integer.parseInt(valueString);
+            } catch (NumberFormatException nf) {
+                System.out.println("\nYou must enter a valid number.");
+            }
             if (value < 0) { // value is blank
                 System.out.println("\nInvalid value: value can not be negative");
             } else {            

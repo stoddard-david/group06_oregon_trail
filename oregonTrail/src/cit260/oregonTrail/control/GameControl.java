@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.InventoryItem;
@@ -108,7 +109,7 @@ public class GameControl {
         return player;
     }
     
-    public static boolean createNewGame(Player player) {
+    public static boolean createNewGame(Player player) throws MapControlException {
 
         if (player == null) {
             return false;
@@ -123,13 +124,17 @@ public class GameControl {
             game.setInventoryItem(items[i], i);        
         }
         
-        Map map = MapControl.createMap(10, 53);
+        
 
-        if (map == null) {
-          return false;
+        try {
+            Map map = MapControl.createMap(10, 53);
+            //Map map = MapControl.createMap(-10, 53);
+            game.setMap(map);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+            return false;
         }
                 
-        game.setMap(map);
         
         return true;
     }

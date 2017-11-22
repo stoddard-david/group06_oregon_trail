@@ -54,7 +54,16 @@ public class OregonTrail {
         
         // create StartProgramViewOrig and display the start program view
         StartProgramView startProgramView = new StartProgramView();
-        startProgramView.displayStartProgramView();
+        
+        try {
+            startProgramView.displayStartProgramView();
+        } catch (Throwable te) {
+            System.out.println(te.getMessage());
+            te.printStackTrace();
+            startProgramView.displayStartProgramView();
+        }
+        
+        
 
     }
     

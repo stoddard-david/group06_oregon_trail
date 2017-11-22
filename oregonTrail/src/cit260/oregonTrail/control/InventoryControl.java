@@ -72,13 +72,13 @@ public class InventoryControl {
         int minQuantity = 1000;
         String item = "";
         
-        for (int i = 0; i < InventoryItem.length; i++) {
+        /*for (int i = 0; i < InventoryItem.length; i++) {
             if (InventoryItem.getInventoryQuantity[i] < minQuantity) {
                 minQuantity = InventoryItem.getInventoryQuantity[i];
                 item = "Your inventory of " + inventoryItem.getInventoryType[i] +
-                        " is at just" + minQuantity + " kind of low..."
+                        " is at just" + minQuantity + " kind of low...";
             }
-        }
+        } */
         return item;
     }
 

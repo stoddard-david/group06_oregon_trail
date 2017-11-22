@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Map;
 import java.util.Random;
 import cit260.oregonTrail.model.PartyMember;
@@ -18,24 +19,24 @@ import cit260.oregonTrail.model.SceneType;
  */
 public class MapControl {
 
-    public static int move(int pace, PartyMember[] partyMemberArray) {
+    public static int move(int pace, PartyMember[] partyMemberArray) throws MapControlException {
 
         int totalHealth = 0;
         int partyCount = 0;
         
         //Option 1,2 or 3 must be choosen
         if(pace < 1 || pace > 3) {
-            return -1;
+            throw new MapControlException("Pace is not within acceptable range. Pace entered was: " + pace);
         }
         
         //The party member must be alive (health greater than 0)
         if (partyMemberArray[0].getHealth() == 0) {
-            return -1;
+            throw new MapControlException("Party leader is dead");
         }
 
         //There must be 5 party members in the array
         if (partyMemberArray.length != 5) {
-            return -1;
+            throw new MapControlException("Party does not have 5 party members. Party has: " + partyMemberArray.length);
         }
 
         //Cycle through each of the ParyMembers to get the average health of alive members
@@ -43,7 +44,7 @@ public class MapControl {
             
             //Checks to make sure the health is valid
             if (partyMemberArray[i].getHealth() < 0 || partyMemberArray[i].getHealth() > 100) {
-                return -1;
+                throw new MapControlException("Party member does not have valid health. Party member has health: " + partyMemberArray[i].getHealth());
             }
             
             if (partyMemberArray[i].getHealth() > 0) {
@@ -54,7 +55,7 @@ public class MapControl {
         
         //Make sure there is atleast one party member alive
         if (partyCount == 0) {
-            return -1;
+            throw new MapControlException("All party members are dead. You beat the secret game.");
         }
 
         //Create and set a random number for the base distance form 10 to 15
@@ -76,10 +77,10 @@ public class MapControl {
         return distance;
     }
     
-    public static Map createMap(int width, int height) {
+    public static Map createMap(int width, int height) throws MapControlException {
      
         if (width < 0 || height < 0) {
-            return null;
+            throw new MapControlException("Invalid Map size. Height is: " + height + " Width is: " + width);
         }
         
         Map map = new Map();
@@ -96,10 +97,10 @@ public class MapControl {
         return map;
     }
 
-    private static Location[][] createLocations(int width, int height) {
+    private static Location[][] createLocations(int width, int height) throws MapControlException {
 
         if (width < 1 || height < 1) {
-            return null;
+            throw new MapControlException("Invalid location. Height is: " + height + " Width is: " + width);
         }
         
         Location[][] locations = new Location[width][height];
@@ -113,7 +114,8 @@ public class MapControl {
         return locations; 
     }
     
-    private static RegularSceneType[] createScenes() {
+    
+    private static RegularSceneType[] createScenes() throws MapControlException {
         
         RegularSceneType[] scenes = new RegularSceneType[5];
 
@@ -145,7 +147,7 @@ public class MapControl {
         return scenes;
     }
 
-    private static void assignScenesToLocations( RegularSceneType[] scenes, Location[][] locations) {
+    private static void assignScenesToLocations( RegularSceneType[] scenes, Location[][] locations) throws MapControlException {
 
         RegularSceneType town = scenes[SceneType.Town.ordinal()];
         RegularSceneType trail = scenes[SceneType.Trail.ordinal()];

@@ -5,10 +5,13 @@
  */
 package cit260.oregonTrail.control;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author dglinzey
  */
 public class TopTenControl {
     
+
 }

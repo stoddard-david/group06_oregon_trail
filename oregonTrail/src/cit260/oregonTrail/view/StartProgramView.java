@@ -50,6 +50,7 @@ public class StartProgramView {
     public void displayStartProgramView() {
         
         boolean done = false; // set flag to not done
+        //int error = 1/0;
         do {
             // prompt for and get players name
             String playersName = this.getPlayersName();

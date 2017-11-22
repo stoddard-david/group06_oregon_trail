@@ -5,10 +5,13 @@
  */
 package cit260.oregonTrail.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author dglinzey
  */
-public class TopTenScene {
+public class TopTenScene implements Serializable {
     
 }
