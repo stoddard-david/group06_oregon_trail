@@ -5,26 +5,28 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.HuntingControlException;
+
 /**
  *
  * @author dglinzey
  */
 public class HuntingControl{
     
-    public static boolean calcHuntingControl(double speed, double distanceToAnimal, double timer) {
+    public static boolean calcHuntingControl(double speed, double distanceToAnimal, double timer) throws HuntingControlException {
     
         //time to beat in seconds
         double timeToBeat = 8;
         
         //check if valid
         if (speed <= 0) {
-            return false;
+            throw new HuntingControlException("The speed of the animal can not be negative.Value entered is " + speed);
         }
         if (distanceToAnimal < 50) {
-            return false;
+            throw new HuntingControlException("The animal can not be closer than 50. Value entered is " + distanceToAnimal);
         }
         if (timer < 0) {
-            return false;
+            throw new HuntingControlException("Time can not be less than 0. Value entered is " + timer);
         }
         
         //do math

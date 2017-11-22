@@ -14,7 +14,6 @@ import java.util.Scanner;
  * @author Stoddard
  */
 public class ProfessionMenuView extends View {
-    private String menu;
     
     public ProfessionMenuView() {
         super("\n"

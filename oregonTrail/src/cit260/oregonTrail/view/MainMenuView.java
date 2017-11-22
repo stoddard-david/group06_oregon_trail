@@ -31,6 +31,7 @@ public class MainMenuView extends View {
                   + "\n3 - Get help on how to play the game"
                   + "\n4 - Game controls"
                   + "\n5 - Save game"
+                  + "\n6 - Test Hunting"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
     }
@@ -61,6 +62,9 @@ public class MainMenuView extends View {
                 break;
             case "5": // save the current game
                 this.saveGame();
+                break;
+            case "6": // test hunting
+                this.testHunting();
                 break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -94,6 +98,11 @@ public class MainMenuView extends View {
     private void displayGameMenu() {
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
+    }
+    
+    private void testHunting() {
+        HuntingView huntingMenu = new HuntingView();
+        huntingMenu.display();
     }
 
     private void saveGame() {

@@ -6,6 +6,7 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.PartyMemberControl;
+import cit260.oregonTrail.exception.PartyMemberControlException;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.model.PartyMember;
@@ -21,7 +22,7 @@ public class PartyMemberView  extends View {
     PartyMember[] partyMembers;
     
     public PartyMemberView() {
-        super("");
+        super("ERROR VIEWING MEMBERS: ENTER Q TO QUIT VIEW");
         
         this.menuMessage="\n-------------------------------------------"
                   + "\n1 - Original Sort"
@@ -32,8 +33,12 @@ public class PartyMemberView  extends View {
         
         this.partyMembers = new PartyMember[5];
         
-        originalPartyMembers();
-        setMenuText();
+        try {
+          originalPartyMembers();
+          setMenuText();
+        } catch (Throwable te) {
+          System.out.println(te.getMessage());
+        }
     }
     
     private void setMenuText() {
@@ -51,22 +56,45 @@ public class PartyMemberView  extends View {
         
         choice = choice.toUpperCase(); // convert choice to upper case
         
+        //For Invalid testing
+        this.partyMembers = new PartyMember[0];
+        
         switch (choice) {
             case "1": // Orginal sort
-               originalPartyMembers();
-               break;
+                 try {
+                   originalPartyMembers();
+                 } catch (Throwable te) {
+                   System.out.println(te.getMessage());
+                 }
+                 break;
             case "2": // Sort Names
-               this.partyMembers = PartyMemberControl.sortByName(this.partyMembers);
-               break;
+                 try {
+                 this.partyMembers = PartyMemberControl.sortByName(this.partyMembers);
+                } catch (PartyMemberControlException me) {
+                   System.out.println(me.getMessage());
+                } catch (Throwable te) {
+                   System.out.println(te.getMessage());
+                }
+                break;
             case "3": // Sort Health
-               this.partyMembers = PartyMemberControl.sortByHealth(this.partyMembers);
-               break;
+                try {
+                    this.partyMembers = PartyMemberControl.sortByHealth(this.partyMembers);
+                } catch (PartyMemberControlException me) {
+                   System.out.println(me.getMessage());
+                } catch (Throwable te) {
+                   System.out.println(te.getMessage());
+                }
+                break;
             default:
                System.out.println("\n*** Invalid selection *** Try again");
                break;
         }
         
-        setMenuText();
+        try {
+          setMenuText();
+        } catch (Throwable te) {
+           System.out.println(te.getMessage());
+        }
         return false;
     }
     
