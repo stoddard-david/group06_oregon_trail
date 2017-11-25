@@ -5,13 +5,15 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.RiverControlException;
+
 /**
  *
  * @author dglinzey
  */
 public class RiverControl {
     
-    public static boolean calcRiverSuccess(int currentDepth, int maxDepth, int currentWidth, int maxWidth) {
+    public static boolean calcRiverSuccess(int currentDepth, int maxDepth, int currentWidth, int maxWidth) throws RiverControlException {
     
         //get random multipliers
         double win = 1.5;

@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.InventoryControlException;
 import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.view.StoreQuantityView;
 /**
@@ -12,15 +13,15 @@ import cit260.oregonTrail.view.StoreQuantityView;
  * @author dglinzey
  */
 public class InventoryControl {
-    public static int foodConsumed(int rations, int numPartyMembers) {
+    public static int foodConsumed(int rations, int numPartyMembers) throws InventoryControlException {
         // checks for inputs too low
         if (rations < 1 || numPartyMembers < 1) {
-            return -1;
+            throw new InventoryControlException("Rations or Party Members is too low. Your rations is: " + rations + " your Party Members are: " + numPartyMembers);
         }
         
         // checks for inputs too high
         if (rations > 3 || numPartyMembers > 5) {
-            return -1;
+            throw new InventoryControlException("Rations or Party Members is too high. Your rations is: " + rations + " your Party Members are: " + numPartyMembers);
         }
         
         // declares var rawFoodConsumed
