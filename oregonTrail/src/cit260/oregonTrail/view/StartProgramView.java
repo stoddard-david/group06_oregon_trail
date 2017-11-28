@@ -6,6 +6,7 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.model.Player;
 import java.util.Scanner;
 
@@ -47,7 +48,7 @@ public class StartProgramView {
         );
     }
 
-    public void displayStartProgramView() {
+    public void displayStartProgramView() throws GameControlException {
         
         boolean done = false; // set flag to not done
         //int error = 1/0;
@@ -88,7 +89,7 @@ public class StartProgramView {
         return value; // return the value entered
     }
 
-    private boolean doAction(String playersName) {
+    private boolean doAction(String playersName) throws GameControlException {
         if (playersName.length() <2) {
             System.out.println("\nInvalid players name: "
                 + "The name must be greater than one character in length");

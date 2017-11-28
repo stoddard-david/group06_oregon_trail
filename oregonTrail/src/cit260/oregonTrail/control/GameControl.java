@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Game;
@@ -68,19 +69,19 @@ public class GameControl {
         }
     }
     
-    public static int changePace(int option) {
+    public static int changePace(int option) throws GameControlException {
         if (option >= 1 &&  option <= 3) {
             return option;
         } else {
-            return -1;
+            throw new GameControlException("changePace option out of acceptable range.");
         }        
     }
     
-    public static int changeRations(int option) {
+    public static int changeRations(int option) throws GameControlException {
         if (option >= 1 &&  option <= 3) {
             return option;
         } else {
-            return -1;
+            throw new GameControlException("changeRations option out of acceptable range.");
         }
     }
     
@@ -95,10 +96,10 @@ public class GameControl {
         return (chance >= 75);
     }
 
-    public static Player createPlayer(String name) {
+    public static Player createPlayer(String name) throws GameControlException {
         
         if (name == null) {
-            return null;
+            throw new GameControlException("Player name is null.");
         }
         
         Player player = new Player();
@@ -109,16 +110,20 @@ public class GameControl {
         return player;
     }
     
-    public static boolean createNewGame(Player player) throws MapControlException {
+    public static boolean createNewGame(Player player) throws MapControlException, GameControlException {
 
         if (player == null) {
-            return false;
+            throw new GameControlException("Player name is null.");
         }        
-        
         Game game = new Game();
         game.setPlayer(player);
         OregonTrail.setCurrentGame(game);
-   
+        
+        if (game == null) {
+            throw new GameControlException("game is null.");
+        }
+
+           
         InventoryItem[] items = createItems();
         for (int i=0; i<items.length; i++) {
             game.setInventoryItem(items[i], i);        

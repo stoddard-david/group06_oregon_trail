@@ -6,7 +6,10 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,23 +33,28 @@ public class ChangeRationsView extends View {
     @Override
     public boolean doAction(String choice) {
         
-        choice = choice.toUpperCase(); // convert choice to uppercase
-        
-        switch (choice) {
-            case "1": // set rations to "Filling"
-                GameControl.changeRations(3);
-                break;
-            case "2": // set rations to "Meager"
-                GameControl.changeRations(2);
-                break;
-            case "3": // set rations to "Bare Bones"
-                GameControl.changeRations(1);
-                break;
-            default:
-                System.out.println("\n*** Invalid selection *** Try again");
-                break;
+        try {
+            choice = choice.toUpperCase(); // convert choice to uppercase
+            
+            switch (choice) {
+                case "1": // set rations to "Filling"
+                    GameControl.changeRations(3);
+                    break;
+                case "2": // set rations to "Meager"
+                    GameControl.changeRations(2);
+                    break;
+                case "3": // set rations to "Bare Bones"
+                    GameControl.changeRations(1);
+                    break;
+                default:
+                    System.out.println("\n*** Invalid selection *** Try again");
+                    break;
+            }
+            
+            return false;
+        } catch (GameControlException ex) {
+            Logger.getLogger(ChangeRationsView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
     }
 }

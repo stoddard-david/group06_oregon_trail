@@ -6,6 +6,7 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Scanner;
@@ -49,6 +50,8 @@ public class MainMenuView extends View {
                     this.startNewGame();
                 } catch (MapControlException ex) {
                     Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (GameControlException ex) {
+                    Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
                 }
                break;
             case "2": // get and start an existing game
@@ -74,7 +77,7 @@ public class MainMenuView extends View {
         return false;
     }
 
-    private void startNewGame() throws MapControlException {
+    private void startNewGame() throws MapControlException, GameControlException {
         // create a new game
         boolean returnValue = GameControl.createNewGame(OregonTrail.getPlayer());
         if (!returnValue) {

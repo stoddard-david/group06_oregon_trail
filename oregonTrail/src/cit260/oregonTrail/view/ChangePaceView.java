@@ -6,8 +6,11 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,23 +38,28 @@ public class ChangePaceView extends View {
     @Override
     public boolean doAction(String choice) {
         
-        choice = choice.toUpperCase(); // convert choice to upper case
-        
-        switch (choice) {
-            case "1": // set pace to "Steady"
-               GameControl.changePace(1);
-               break;
-            case "2": // set pace to "Strenuous"
-               GameControl.changePace(2);
-               break;
-            case "3": // set pace to "Grueling"
-               GameControl.changePace(3);
-               break;
-            default:
-               System.out.println("\n*** Invalid selection *** Try again");
-               break;
+        try {
+            choice = choice.toUpperCase(); // convert choice to upper case
+            
+            switch (choice) {
+                case "1": // set pace to "Steady"
+                    GameControl.changePace(1);
+                    break;
+                case "2": // set pace to "Strenuous"
+                    GameControl.changePace(2);
+                    break;
+                case "3": // set pace to "Grueling"
+                    GameControl.changePace(3);
+                    break;
+                default:
+                    System.out.println("\n*** Invalid selection *** Try again");
+                    break;
+            }
+            
+            return false;
+        } catch (GameControlException ex) {
+            Logger.getLogger(ChangePaceView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
     }
 
