@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.PartyMember;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,7 +23,7 @@ public class MapControlTest {
      * Test of move method, of class MapControl.
      */
     @Test
-    public void testMove() {
+    public void testMove() throws MapControlException {
 
         PartyMember[] partyMemberArray = new PartyMember[5];
         

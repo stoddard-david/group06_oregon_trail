@@ -54,11 +54,11 @@ public class Location implements Serializable {
         this.coordinateHeight = coordinateHeight;
     }
 
-    public boolean visited() {
+    public boolean getVisited() {
         return visited;
     }
 
-    public void setvisited(boolean visited) {
+    public void setVisited(boolean visited) {
         this.visited = visited;
     }
     

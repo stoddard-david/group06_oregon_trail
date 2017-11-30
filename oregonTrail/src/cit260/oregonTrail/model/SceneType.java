@@ -14,5 +14,6 @@ public enum SceneType {
     Trail,
     River,
     Landmark,
+    Mountain,
     End;
 }

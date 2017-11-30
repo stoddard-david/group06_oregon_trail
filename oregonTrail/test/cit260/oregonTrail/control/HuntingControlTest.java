@@ -5,6 +5,7 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.HuntingControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +22,7 @@ public class HuntingControlTest {
      * Test of calcHuntingControl method, of class HuntingControl.
      */
     @Test
-    public void testCalcHuntingControl() {
+    public void testCalcHuntingControl() throws HuntingControlException {
         System.out.println("calcHuntingControl Test1");
         double speed = 2.0;
         double distanceToAnimal = 150.0;

@@ -31,12 +31,14 @@ public class MapView {
         
         RegularSceneType scene;
         int type;
+        boolean visited;
         this.mapImage = "";
 
         for (int i = 0; i<locations.length; i++) {
             for(int j = 0; j<locations[i].length; j++) {
                 
                 scene = locations[i][j].getType();
+                visited = locations[i][j].getVisited();
                 if (scene != null) {
                     type = scene.getIndex();
                 } else {
@@ -51,8 +53,14 @@ public class MapView {
                     this.mapImage = mapImage + "*";
                 } else if(type == SceneType.End.ordinal()) {
                     this.mapImage = mapImage + "X";
+                } else if(type == SceneType.Mountain.ordinal()) {
+                    this.mapImage = mapImage + "^";
                 } else if(type == SceneType.Trail.ordinal()) {
-                    this.mapImage = mapImage + "-";
+                    if (visited) {
+                        this.mapImage = mapImage + "-";
+                    } else {
+                        this.mapImage = mapImage + ".";
+                    }
                 } else {
                     this.mapImage = mapImage + " ";
                 }
@@ -60,6 +68,16 @@ public class MapView {
             this.mapImage = mapImage + "\n";
         }
         System.out.println(this.mapImage);
+        
+        System.out.println("-------------------------------------------"
+                  + "\n|                 KEY                     |"
+                  + "\n-------------------------------------------"
+                  + "\n| o Town/Fort           * Landmark        |"
+                  + "\n| . Untraveled Trail    - Traveled Trail  |"
+                  + "\n| ^ Mountain            ~ River           |"
+                  + "\n| X Oregon                                |"
+                  + "\n-------------------------------------------");
+
     }
     
 }

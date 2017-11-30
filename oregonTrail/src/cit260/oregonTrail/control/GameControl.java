@@ -129,18 +129,18 @@ public class GameControl {
             game.setInventoryItem(items[i], i);        
         }
         
-        
-
         try {
+            System.out.println("Test 1");
             Map map = MapControl.createMap(10, 53);
+            System.out.println("Test 1.5");
             //Map map = MapControl.createMap(-10, 53);
             game.setMap(map);
+            System.out.println("Test 2");
         } catch (MapControlException me) {
             System.out.println(me.getMessage());
             return false;
         }
-                
-        
+                        
         return true;
     }
 
