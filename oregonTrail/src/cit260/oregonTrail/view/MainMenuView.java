@@ -20,8 +20,6 @@ import oregontrail.OregonTrail;
  */
 public class MainMenuView extends View {
     
-    private String menu;
-    
     public MainMenuView() {
          super("\n"
                   + "\n-------------------------------------------"

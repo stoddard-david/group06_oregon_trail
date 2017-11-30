@@ -48,7 +48,7 @@ public class MapView {
                 if (type == SceneType.Town.ordinal()) {
                     this.mapImage = mapImage + "o";
                 } else if(type == SceneType.River.ordinal()) {
-                    this.mapImage = mapImage + "~";
+                    this.mapImage = mapImage + ",";
                 } else if(type == SceneType.Landmark.ordinal()) {
                     this.mapImage = mapImage + "*";
                 } else if(type == SceneType.End.ordinal()) {
@@ -67,6 +67,8 @@ public class MapView {
             }
             this.mapImage = mapImage + "\n";
         }
+
+        System.out.println("\n");
         System.out.println(this.mapImage);
         
         System.out.println("-------------------------------------------"
@@ -74,7 +76,7 @@ public class MapView {
                   + "\n-------------------------------------------"
                   + "\n| o Town/Fort           * Landmark        |"
                   + "\n| . Untraveled Trail    - Traveled Trail  |"
-                  + "\n| ^ Mountain            ~ River           |"
+                  + "\n| ^ Mountain            , River           |"
                   + "\n| X Oregon                                |"
                   + "\n-------------------------------------------");
 

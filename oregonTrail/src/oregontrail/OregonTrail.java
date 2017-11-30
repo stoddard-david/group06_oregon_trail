@@ -5,6 +5,7 @@
  */
 package oregontrail;
 
+import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.model.Player;
 import cit260.oregonTrail.model.Actor;
 import cit260.oregonTrail.model.InventoryItem;
@@ -50,7 +51,7 @@ public class OregonTrail {
     
     private static Player player = null;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GameControlException {
         
         // create StartProgramViewOrig and display the start program view
         StartProgramView startProgramView = new StartProgramView();

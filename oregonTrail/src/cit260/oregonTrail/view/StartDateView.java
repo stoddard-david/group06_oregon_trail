@@ -102,8 +102,7 @@ public class StartDateView extends View {
         // Display the game menu view
         gameMenuView.display();
 */
-        
-        StoreMenuView storeMenuView = new StoreMenuView();
-        storeMenuView.display();
-    }    
+        TownView townView = new TownView();
+        townView.display();
+    }
 }
