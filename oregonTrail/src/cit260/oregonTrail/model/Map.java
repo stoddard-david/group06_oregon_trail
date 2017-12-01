@@ -5,11 +5,13 @@
  */
 package cit260.oregonTrail.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dglinzey
  */
-public class Map {
+public class Map implements Serializable {
     
     private int height;
     private int width;

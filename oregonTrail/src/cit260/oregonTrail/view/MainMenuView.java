@@ -88,10 +88,13 @@ public class MainMenuView extends View {
     }
 
     private void startExistingGame() {
-        this.console.println("\n\nEnter the file path for the file where the game "
-                            + " is to be saved.");
-        
+        String tempString = this.displayMessage;
+        this.displayMessage = "\n\nEnter the file path for the file where the game"
+                            + "is to be loaded.";
+
         String filePath = this.getInput();
+
+        this.displayMessage = tempString;
         
         try {
             GameControl.loadGame(filePath);
@@ -116,9 +119,14 @@ public class MainMenuView extends View {
     }
 
     private void saveGame() {
-        this.console.println("\n\nEnter the file path for the file where the game"
-                            + "is to be saved.");
+        
+        String tempString = this.displayMessage;
+        this.displayMessage = "\n\nEnter the file path for the file where the game"
+                            + "is to be saved.";
+
         String filePath = this.getInput();
+
+        this.displayMessage = tempString;
         
         try { 
             GameControl.saveGame(OregonTrail.getCurrentGame(), filePath);
