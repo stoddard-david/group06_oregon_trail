@@ -44,10 +44,10 @@ public class HuntingView  extends View{
                 try {
                    hit = HuntingControl.calcHuntingControl(0.0, 75.0, 0.5);
                 } catch (HuntingControlException me) {
-                   System.out.println(me.getMessage());
+                   this.console.println(me.getMessage());
                    return valid;
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   this.console.println(te.getMessage());
                    return valid;
                 }
                 break;
@@ -55,10 +55,10 @@ public class HuntingView  extends View{
                 try {
                    hit = HuntingControl.calcHuntingControl(4.0, 0.0, 3.0);
                 } catch (HuntingControlException me) {
-                   System.out.println(me.getMessage());
+                   this.console.println(me.getMessage());
                    return valid;
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   this.console.println(te.getMessage());
                    return valid;
                 }
                break;
@@ -66,10 +66,10 @@ public class HuntingView  extends View{
                 try {
                    hit = HuntingControl.calcHuntingControl(1.2, 125.0, -1.0);
                 } catch (HuntingControlException me) {
-                   System.out.println(me.getMessage());
+                   this.console.println(me.getMessage());
                    return valid;
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   this.console.println(te.getMessage());
                    return valid;
                 }
                break;
@@ -78,22 +78,22 @@ public class HuntingView  extends View{
                    double timer = getTimer();
                    hit = HuntingControl.calcHuntingControl(1.2, 100.0, timer);
                 } catch (HuntingControlException me) {
-                   System.out.println(me.getMessage());
+                   this.console.println(me.getMessage());
                    return valid;
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   this.console.println(te.getMessage());
                    return valid;
                 }
                break;
             default:
-               System.out.println("\n*** Invalid selection *** Try again");
+               this.console.println("\n*** Invalid selection *** Try again");
                break;
         }
         
         if (hit) {
-            System.out.println("You have hit the animal and are collecting meat!");
+            this.console.println("You have hit the animal and are collecting meat!");
         } else {
-            System.out.println("Sorry, you have missed.");
+            this.console.println("Sorry, you have missed.");
         }
         
         //Return if a valid choice was picked
@@ -107,21 +107,26 @@ public class HuntingView  extends View{
         
         boolean valid = false; // initialize to not valid
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\nEnter the time it took for you to fire.");
-            try {
-                valueString = this.keyboard.readLine(); // value to be returned
-            } catch (IOException ex) {
-                ErrorView.display(this.getClass().getName(), "You must enter a value.");
+        try {
+            while (!valid) { // loop while an invalid value is entered
+            
+                this.console.println("\nEnter the time it took for you to fire.");
+                try {
+                    valueString = this.keyboard.readLine(); // value to be returned
+                } catch (IOException ex) {
+                    ErrorView.display(this.getClass().getName(), "You must enter a value.");
+                }
+                try {
+                    value = Double.parseDouble(valueString);
+                } catch (NumberFormatException nf) {
+                    ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number.");
+                }
+                if (value != -9999) {
+                    valid = true;
+                }
             }
-            try {
-                value = Double.parseDouble(valueString);
-            } catch (NumberFormatException nf) {
-                System.out.println("\nYou must enter a valid number.");
-            }
-            if (value != -9999) {
-                valid = true;
-            }
+        } catch (Exception e) {
+                this.console.println("Error reading input: " + e.getMessage());
         }
         
         return value; // return the value entered

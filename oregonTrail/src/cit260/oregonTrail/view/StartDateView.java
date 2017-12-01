@@ -69,7 +69,7 @@ public class StartDateView extends View {
                valid = false; //Set to false, so it won't exit
                break;
             default:
-               System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                valid = false; //Sets the answer to invalid answer to return
                break;
         }
@@ -91,7 +91,7 @@ public class StartDateView extends View {
             + "\n"
             + "\nPress any key to continue";
         
-        System.out.println(helpProfession); //Print the help
+        this.console.println(helpProfession); //Print the help
         try {
             this.keyboard.readLine(); // get next line typed on keyboard, used to pause
         } catch (IOException ex) {

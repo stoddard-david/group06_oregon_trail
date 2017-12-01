@@ -38,17 +38,17 @@ public class SoundToggleView extends View {
                 this.soundOff();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again"); 
                 break;
         }
         return false;
     }
     
     private void soundOn() {
-        System.out.println("*** soundOn function called ***");
+        this.console.println("*** soundOn function called ***");
     }
     
     private void soundOff() {
-        System.out.println("*** soundOff function called ***");
+        this.console.println("*** soundOff function called ***");
     }
 }

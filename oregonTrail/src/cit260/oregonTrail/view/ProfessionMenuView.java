@@ -56,7 +56,7 @@ public class ProfessionMenuView extends View {
                valid = false; //Sets the to invalid, so you can choose a valid profession
                break;
             default:
-               System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                valid = false; //Sets the answer to invalid answer to return
                break;
         }
@@ -80,12 +80,15 @@ public class ProfessionMenuView extends View {
             + "\n"
             + "\nPress any key to continue";
         
-
-        System.out.println(helpProfession); //Print the help
+        
+        this.console.println(helpProfession); //Print the help
         try {
             this.keyboard.readLine(); // get next line typed on keyboard, used to pause
         } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "You must enter a value.");        }
+            ErrorView.display(this.getClass().getName(), "You must enter a value.");        
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
+        }
     }
     
     private void displayNextView() {

@@ -79,7 +79,7 @@ public class TownView  extends View {
                 this.mainView();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -114,11 +114,11 @@ public class TownView  extends View {
     }
 
     private void travelTrail() {
-        System.out.println("\n*** Travel trail");
+        this.console.println("\n*** Travel trail");
     }
 
     private void advice() {
-        System.out.println("\n*** Get advice");
+        this.console.println("\n*** Get advice");
     }
 
     private void generalStore() {
@@ -127,11 +127,11 @@ public class TownView  extends View {
     }
 
     private void rest() {
-        System.out.println("\n*** Rest");
+        this.console.println("\n*** Rest");
     }
 
     private void trade() {
-        System.out.println("\n*** Trade");
+        this.console.println("\n*** Trade");
     }
 
     private void mainView() {

@@ -61,22 +61,24 @@ public interface ViewInterface {
             String value = null; // value to be returned
             boolean valid = false; // initialize to not valid
         
-            while (!valid) { // loop while an invalid value is entered
-                System.out.println("\n" + this.displayMessage);
-            
-                try {
+            try {
+                while (!valid) { // loop while an invalid value is entered
+                    this.console.println("\n" + this.displayMessage);
+
+                    
                     value = this.keyboard.readLine(); // get next line typed on keyboard
-                } catch (IOException ex) {
-                    ErrorView.display(this.getClass().getName(), "You must enter a value.");
+                    
+                    value = value.trim(); // trim off leading and trailing blanks
+
+                    if (value.length() <1) { // value is blank
+                        ErrorView.display(this.getClass().getName(), "\nInvalid value: value can not be blank");
+                        continue;
+                    }
+
+                    break; // end the loop
                 }
-                value = value.trim(); // trim off leading and trailing blanks
-            
-                if (value.length() <1) { // value is blank
-                    System.out.println("\nInvalid value: value can not be blank");
-                    continue;
-                }
-            
-                break; // end the loop
+            } catch (Exception e) {
+                ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
             }
         
             return value; // return the value entered

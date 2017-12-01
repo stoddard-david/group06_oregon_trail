@@ -18,6 +18,7 @@ import cit260.oregonTrail.model.AdviceScene;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.RiverScene;
 import cit260.oregonTrail.model.StoreScene;
+import cit260.oregonTrail.view.ErrorView;
 import cit260.oregonTrail.view.StartProgramView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -91,8 +92,8 @@ public class OregonTrail {
     
     public static void main(String[] args) throws GameControlException {
         
-        // create StartProgramViewOrig and display the start program view
-        StartProgramView startProgramView = new StartProgramView();
+
+        
         
         try {
             
@@ -103,6 +104,7 @@ public class OregonTrail {
             String filePath = "log.txt";
             OregonTrail.logFile = new PrintWriter(filePath);
             
+            StartProgramView startProgramView = new StartProgramView();
             startProgramView.displayStartProgramView();
         } catch (Throwable e) {
                 System.out.println("Exception: " + e.toString() +
@@ -110,7 +112,7 @@ public class OregonTrail {
                                    "\nMessage: " + e.getMessage());
     
                 e.printStackTrace();
-                startProgramView.displayStartProgramView();
+                
         }
         
         finally {
@@ -124,7 +126,7 @@ public class OregonTrail {
                 if (OregonTrail.logFile != null)
                     OregonTrail.logFile.close();
             } catch (IOException ex) {
-                System.out.println("Error closing files");
+                ErrorView.display("main - ", "ERROR - Failed to create new game");
                 return;
             }
             

@@ -37,7 +37,7 @@ public class PartyMemberView  extends View {
           originalPartyMembers();
           setMenuText();
         } catch (Throwable te) {
-          System.out.println(te.getMessage());
+          ErrorView.display(this.getClass().getName(), te.getMessage());
         }
     }
     
@@ -64,36 +64,36 @@ public class PartyMemberView  extends View {
                  try {
                    originalPartyMembers();
                  } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   ErrorView.display(this.getClass().getName(), te.getMessage());
                  }
                  break;
             case "2": // Sort Names
                  try {
                  this.partyMembers = PartyMemberControl.sortByName(this.partyMembers);
                 } catch (PartyMemberControlException me) {
-                   System.out.println(me.getMessage());
+                   ErrorView.display(this.getClass().getName(), me.getMessage());
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   ErrorView.display(this.getClass().getName(), te.getMessage());
                 }
                 break;
             case "3": // Sort Health
                 try {
                     this.partyMembers = PartyMemberControl.sortByHealth(this.partyMembers);
                 } catch (PartyMemberControlException me) {
-                   System.out.println(me.getMessage());
+                   ErrorView.display(this.getClass().getName(), me.getMessage());
                 } catch (Throwable te) {
-                   System.out.println(te.getMessage());
+                   ErrorView.display(this.getClass().getName(), te.getMessage());
                 }
                 break;
             default:
-               System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                break;
         }
         
         try {
           setMenuText();
         } catch (Throwable te) {
-           System.out.println(te.getMessage());
+           ErrorView.display(this.getClass().getName(), te.getMessage());
         }
         return false;
     }

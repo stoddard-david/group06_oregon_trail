@@ -47,7 +47,7 @@ public class HelpMenuView extends View {
                 this.howRiver();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                this.console.println("\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -55,19 +55,19 @@ public class HelpMenuView extends View {
     }
 
     private void howMove() {
-        System.out.println("*** howMove function called ***");
+        this.console.println("*** howMove function called ***");
     }
 
     private void howHunt() {
-        System.out.println("*** howHunt function called ***");
+        this.console.println("*** howHunt function called ***");
     }
 
     private void howHealth() {
-        System.out.println("*** howHealth function called ***");
+        this.console.println("*** howHealth function called ***");
     }
 
     private void howRiver() {
-        System.out.println("*** howRiver function called ***");
+        this.console.println("*** howRiver function called ***");
     }
 
 }

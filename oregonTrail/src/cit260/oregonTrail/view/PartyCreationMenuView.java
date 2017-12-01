@@ -55,7 +55,7 @@ public class PartyCreationMenuView extends View {
     public boolean doAction(String choice) {
         
         if (choice.length() < 2) {
-            System.out.println("\nInvalid players name: "
+            ErrorView.display(this.getClass().getName(), "\nInvalid players name: "
                 + "The name must be greater than one character in length");
             return false;
         }

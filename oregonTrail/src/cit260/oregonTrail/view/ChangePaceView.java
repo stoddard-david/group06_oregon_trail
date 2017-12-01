@@ -52,7 +52,7 @@ public class ChangePaceView extends View {
                     GameControl.changePace(3);
                     break;
                 default:
-                    System.out.println("\n*** Invalid selection *** Try again");
+                    this.console.println("\n*** Invalid selection *** Try again");
                     break;
             }
             

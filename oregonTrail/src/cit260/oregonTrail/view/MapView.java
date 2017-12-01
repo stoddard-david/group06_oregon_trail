@@ -10,6 +10,8 @@ import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 import oregontrail.OregonTrail;
 
@@ -20,6 +22,9 @@ import oregontrail.OregonTrail;
 public class MapView {
     
     private String mapImage;
+    
+    protected final BufferedReader keyboard = OregonTrail.getInFile();
+    protected final PrintWriter console = OregonTrail.getOutFile();
     
     public void MapView() {
     }
@@ -68,10 +73,10 @@ public class MapView {
             this.mapImage = mapImage + "\n";
         }
 
-        System.out.println("\n");
-        System.out.println(this.mapImage);
+        this.console.println("\n");
+        this.console.println(this.mapImage);
         
-        System.out.println("-------------------------------------------"
+        this.console.println("-------------------------------------------"
                   + "\n|                 KEY                     |"
                   + "\n-------------------------------------------"
                   + "\n| o Town/Fort           * Landmark        |"

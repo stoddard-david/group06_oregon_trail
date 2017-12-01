@@ -13,6 +13,11 @@ import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.model.InventoryType;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.model.PartyLeader;
+import cit260.oregonTrail.view.ErrorView;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 import oregontrail.OregonTrail;
 /**
@@ -21,12 +26,28 @@ import oregontrail.OregonTrail;
  */
 public class GameControl {
     
-    public static void saveGame(int id) {
-        
+    public static void saveGame(Game game, String filepath) throws GameControlException {
+        try( FileOutputStream fops = new FileOutputStream(filepath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(game);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
     }
 
-    public static void loadGame(int id) {
+    public static void loadGame(String filepath) throws GameControlException {
+        Game game = null;
         
+        try( FileInputStream fips = new FileInputStream(filepath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject();
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+        OregonTrail.setCurrentGame(game);
     }
 
     public static void endGame() {
@@ -130,14 +151,14 @@ public class GameControl {
         }
         
         try {
-            System.out.println("Test 1");
+
             Map map = MapControl.createMap(10, 53);
-            System.out.println("Test 1.5");
+
             //Map map = MapControl.createMap(-10, 53);
             game.setMap(map);
-            System.out.println("Test 2");
+
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            ErrorView.display("createNewGame - ", "Error creating map: " + me.getMessage());
             return false;
         }
                         

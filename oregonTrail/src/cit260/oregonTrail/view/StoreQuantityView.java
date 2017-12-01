@@ -56,7 +56,7 @@ public class StoreQuantityView {
         boolean valid = false; // initialize to not valid
         
         while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
+            this.console.println("\n" + this.menu);
             try {
                 valueString = this.keyboard.readLine(); // value to be returned
             } catch (IOException ex) {
@@ -65,10 +65,10 @@ public class StoreQuantityView {
             try {
                 value = Integer.parseInt(valueString);
             } catch (NumberFormatException nf) {
-                System.out.println("\nYou must enter a valid number.");
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number.");
             }
             if (value < 0) { // value is blank
-                System.out.println("\nInvalid value: value can not be negative");
+                ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number.");
             } else {            
                 valid = true; // end the loop
             }
