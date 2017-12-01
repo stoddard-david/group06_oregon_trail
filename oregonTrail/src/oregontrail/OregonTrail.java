@@ -19,6 +19,12 @@ import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.RiverScene;
 import cit260.oregonTrail.model.StoreScene;
 import cit260.oregonTrail.view.StartProgramView;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -26,12 +32,44 @@ import cit260.oregonTrail.view.StartProgramView;
  * @author Stoddard
  */
 public class OregonTrail {
+    
 
     /**
      * @param args the command line arguments
      */
     
     private static Game currentGame = null;
+    private static Player player = null;
+    
+    private static PrintWriter outFile = null;
+    private static BufferedReader inFile = null;
+    
+    private static PrintWriter logFile = null;
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        OregonTrail.logFile = logFile;
+    }
+
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        OregonTrail.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        OregonTrail.inFile = inFile;
+    }
+    
 
     public static Game getCurrentGame() {
         return currentGame;
@@ -49,7 +87,7 @@ public class OregonTrail {
         OregonTrail.player = player;
     }
     
-    private static Player player = null;
+    
     
     public static void main(String[] args) throws GameControlException {
         
@@ -57,15 +95,45 @@ public class OregonTrail {
         StartProgramView startProgramView = new StartProgramView();
         
         try {
+            
+            OregonTrail.inFile = new BufferedReader(new InputStreamReader(System.in));
+            
+            OregonTrail.outFile = new PrintWriter(System.out, true);
+            
+            String filePath = "log.txt";
+            OregonTrail.logFile = new PrintWriter(filePath);
+            
             startProgramView.displayStartProgramView();
-        } catch (Throwable te) {
-            System.out.println(te.getMessage());
-            te.printStackTrace();
-            startProgramView.displayStartProgramView();
+        } catch (Throwable e) {
+                System.out.println("Exception: " + e.toString() +
+                                   "\nCause: " + e.getCause() +
+                                   "\nMessage: " + e.getMessage());
+    
+                e.printStackTrace();
+                startProgramView.displayStartProgramView();
+        }
+        
+        finally {
+            try {
+                if (OregonTrail.inFile != null)
+                    OregonTrail.inFile.close();
+                
+                if (OregonTrail.outFile != null)
+                    OregonTrail.outFile.close();
+                
+                if (OregonTrail.logFile != null)
+                    OregonTrail.logFile.close();
+            } catch (IOException ex) {
+                System.out.println("Error closing files");
+                return;
+            }
+            
         }
         
         
 
     }
+    
+    
     
 }

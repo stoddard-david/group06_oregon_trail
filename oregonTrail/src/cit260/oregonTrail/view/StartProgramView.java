@@ -8,7 +8,13 @@ package cit260.oregonTrail.view;
 import cit260.oregonTrail.control.GameControl;
 import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.model.Player;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oregontrail.OregonTrail;
 
 /**
  *
@@ -17,6 +23,9 @@ import java.util.Scanner;
 public class StartProgramView {
     
     private String promptMessage;
+    
+    protected final BufferedReader keyboard = OregonTrail.getInFile();
+    protected final PrintWriter console = OregonTrail.getOutFile();
     
     public StartProgramView() {
         // promptMessage = "Please enter your name"
@@ -68,14 +77,18 @@ public class StartProgramView {
 
     private String getPlayersName() {
         
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+        
         String value = ""; // value to be returned
         boolean valid = false; // initialize to not valid
         
         while (!valid) { // loop while an invalid value is entered
             System.out.println("\n" + this.promptMessage);
             
-            value = keyboard.nextLine(); // get next line typed on keyboard
+            try {
+                value = this.keyboard.readLine(); // get next line typed on keyboard
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "You must enter a value.");
+            }
             value = value.trim(); // trim off leading and trailing blanks
             
             if (value.length() <1) { // value is blank

@@ -5,7 +5,13 @@
  */
 package cit260.oregonTrail.view;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oregontrail.OregonTrail;
 
 /**
  *
@@ -14,6 +20,9 @@ import java.util.Scanner;
 public class StoreQuantityView {
     
     private String menu;
+    
+    protected final BufferedReader keyboard = OregonTrail.getInFile();
+    protected final PrintWriter console = OregonTrail.getOutFile();
     
     public StoreQuantityView(){
     
@@ -40,7 +49,7 @@ public class StoreQuantityView {
     }
 
     private int getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+        
         String valueString = "";
         int value = 0;
         
@@ -48,7 +57,11 @@ public class StoreQuantityView {
         
         while (!valid) { // loop while an invalid value is entered
             System.out.println("\n" + this.menu);
-            valueString = keyboard.nextLine(); // value to be returned
+            try {
+                valueString = this.keyboard.readLine(); // value to be returned
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "You must enter a value.");
+            }
             try {
                 value = Integer.parseInt(valueString);
             } catch (NumberFormatException nf) {

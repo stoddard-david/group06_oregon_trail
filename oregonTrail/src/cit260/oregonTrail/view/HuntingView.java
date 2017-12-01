@@ -8,7 +8,10 @@ package cit260.oregonTrail.view;
 import cit260.oregonTrail.control.HuntingControl;
 import cit260.oregonTrail.exception.HuntingControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -98,7 +101,7 @@ public class HuntingView  extends View{
     }
     
         private double getTimer() {
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+        
         String valueString = "";
         double value = -9999;
         
@@ -106,7 +109,11 @@ public class HuntingView  extends View{
         
         while (!valid) { // loop while an invalid value is entered
             System.out.println("\nEnter the time it took for you to fire.");
-            valueString = keyboard.nextLine(); // value to be returned
+            try {
+                valueString = this.keyboard.readLine(); // value to be returned
+            } catch (IOException ex) {
+                ErrorView.display(this.getClass().getName(), "You must enter a value.");
+            }
             try {
                 value = Double.parseDouble(valueString);
             } catch (NumberFormatException nf) {

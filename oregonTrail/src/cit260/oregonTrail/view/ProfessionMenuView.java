@@ -7,7 +7,10 @@ package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.control.GameControl;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -77,9 +80,12 @@ public class ProfessionMenuView extends View {
             + "\n"
             + "\nPress any key to continue";
         
-        Scanner keyboard = new Scanner(System.in); //get infile for keyboard
+
         System.out.println(helpProfession); //Print the help
-        keyboard.nextLine(); // get next line typed on keyboard, used to pause
+        try {
+            this.keyboard.readLine(); // get next line typed on keyboard, used to pause
+        } catch (IOException ex) {
+            ErrorView.display(this.getClass().getName(), "You must enter a value.");        }
     }
     
     private void displayNextView() {
