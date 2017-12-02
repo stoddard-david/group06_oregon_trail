@@ -8,6 +8,10 @@ package cit260.oregonTrail.control;
 import cit260.oregonTrail.exception.InventoryControlException;
 import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.view.StoreQuantityView;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 /**
  *
  * @author dglinzey
@@ -72,9 +76,7 @@ public class InventoryControl {
         
         int minQuantity = 1000;
         String item = "";
-        String list = "Type:  8Amount:\n";
-        String message = "";
-        
+         
         for (int i = 0; i < inventoryItems.length; i++) {
             if (inventoryItems[i].getQuantityOwned() < minQuantity) {
                 minQuantity = inventoryItems[i].getQuantityOwned();
@@ -82,11 +84,37 @@ public class InventoryControl {
                         " is: " + minQuantity + ". That is kind of Low.\n";
             }
         }
-        for (int i = 0; i < inventoryItems.length; i++ ) {
-            list += inventoryItems[i].getInventoryType() + "  " + inventoryItems[i].getQuantityOwned() + "\n";
+        
+        return item;
+    }
+    
+    public static void viewSupplies(InventoryItem[] inventoryItems) {
+        
+        InventoryItem tempItem = new InventoryItem();
+        out.printf("%n%-30s%6s","Supply","Quantity");
+        out.printf("%n%-30s%6s","-----","-------");
+        
+        for (int i = 0; i < inventoryItems.length; i++) {
+            out.printf("%n%-30s%4d",inventoryItems[i].getInventoryType(),inventoryItems[i].getQuantityOwned());
         }
-        message = item + "\n" + list;
-        return message;
+        
+    }
+    public static void saveSuppliesReport(InventoryItem[] inventoryItems, String filepath) throws InventoryControlException, FileNotFoundException {
+        try (PrintWriter out = new PrintWriter(filepath)) {
+            
+            //Print title and columns
+            out.println("\n   Current Supplies");
+            out.printf("%n%-30s%6s","Supply","Quantity");
+            out.printf("%n%-30s%6s","---","------");
+            
+            for (int i = 0; i < inventoryItems.length; i++) {
+                out.printf("%n%-30s%4d",inventoryItems[i].getInventoryType(),inventoryItems[i].getQuantityOwned());
+            }
+           
+        } catch (IOException ex) {
+            throw new InventoryControlException(ex.getMessage());
+        }
+
     }
     
 }

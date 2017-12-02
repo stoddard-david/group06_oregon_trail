@@ -91,11 +91,8 @@ public class GameMenuView extends View{
     }
 
     private void viewInventory() {
-        Game currentGame = OregonTrail.getCurrentGame();
-        InventoryItem[] inventoryItems = currentGame.getInventoryItems();
-        InventoryControl low = new InventoryControl();
-        String inventoryLow = low.lowInventory(inventoryItems);
-        this.console.println(inventoryLow);
+        SuppliesView supplies = new SuppliesView();
+        supplies.display();
     }
 
     private void viewPartyMembers() {

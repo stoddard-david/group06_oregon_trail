@@ -1,0 +1,11 @@
+
+   Current Supplies
+
+Supply                        Quantity
+---                           ------
+Flour                            0
+Meat                             0
+Water                            0
+Oxen                             0
+Wagon Parts                      0
+Bullets                          0

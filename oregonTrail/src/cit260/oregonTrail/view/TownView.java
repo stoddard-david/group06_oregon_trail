@@ -37,7 +37,7 @@ public class TownView  extends View {
                   + "\n4 - Change pace"
                   + "\n5 - Change rations"
                   + "\n6 - View Map"
-                  + "\n7 - View Inventory"
+                  + "\n7 - View Supplies"
                   + "\n8 - View Party Members"
                   + "\n9 - Stop to rest"
                   + "\n10 - Attempt to trade"
@@ -119,11 +119,8 @@ public class TownView  extends View {
     }
 
     private void viewInventory() {
-        Game currentGame = OregonTrail.getCurrentGame();
-        InventoryItem[] inventoryItems = currentGame.getInventoryItems();
-        InventoryControl low = new InventoryControl();
-        String inventoryLow = low.lowInventory(inventoryItems);
-        this.console.println(inventoryLow);
+        SuppliesView supplies = new SuppliesView();
+        supplies.display();
     }
 
     private void viewPartyMembers() {
