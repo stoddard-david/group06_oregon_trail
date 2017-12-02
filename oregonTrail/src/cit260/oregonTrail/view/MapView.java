@@ -53,7 +53,7 @@ public class MapView {
                 if (type == SceneType.Town.ordinal()) {
                     this.mapImage = mapImage + "o";
                 } else if(type == SceneType.River.ordinal()) {
-                    this.mapImage = mapImage + ",";
+                    this.mapImage = mapImage + ".";
                 } else if(type == SceneType.Landmark.ordinal()) {
                     this.mapImage = mapImage + "*";
                 } else if(type == SceneType.End.ordinal()) {
@@ -64,7 +64,7 @@ public class MapView {
                     if (visited) {
                         this.mapImage = mapImage + "-";
                     } else {
-                        this.mapImage = mapImage + ".";
+                        this.mapImage = mapImage + "~";
                     }
                 } else {
                     this.mapImage = mapImage + " ";
@@ -80,11 +80,18 @@ public class MapView {
                   + "\n|                 KEY                     |"
                   + "\n-------------------------------------------"
                   + "\n| o Town/Fort           * Landmark        |"
-                  + "\n| . Untraveled Trail    - Traveled Trail  |"
-                  + "\n| ^ Mountain            , River           |"
+                  + "\n| ~ Untraveled Trail    - Traveled Trail  |"
+                  + "\n| ^ Mountain            . River           |"
                   + "\n| X Oregon                                |"
                   + "\n-------------------------------------------");
 
+        
+        this.console.println("\nPress any key to continue");
+        try {
+            String value = this.keyboard.readLine();
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
+        } 
     }
     
 }

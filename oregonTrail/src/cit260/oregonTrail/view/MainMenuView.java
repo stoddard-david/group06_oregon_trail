@@ -46,10 +46,11 @@ public class MainMenuView extends View {
                 try {
                     // create and start a new game
                     this.startNewGame();
+                    return true;
                 } catch (MapControlException ex) {
-                    Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                    ErrorView.display(this.getClass().getName(), ex.getMessage());
                 } catch (GameControlException ex) {
-                    Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                    ErrorView.display(this.getClass().getName(), ex.getMessage());
                 }
                break;
             case "2": // get and start an existing game

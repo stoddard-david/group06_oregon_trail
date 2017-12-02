@@ -1,0 +1,10 @@
+cit260.oregonTrail.view.ProfessionMenuView -
+Invalid value: value can not be blank
+cit260.oregonTrail.view.ProfessionMenuView -
+*** Invalid selection *** Try again
+cit260.oregonTrail.view.ProfessionMenuView -
+Invalid value: value can not be blank
+cit260.oregonTrail.view.PartyCreationMenuView -
+Invalid value: value can not be blank
+cit260.oregonTrail.view.TownView -
+Invalid value: value can not be blank

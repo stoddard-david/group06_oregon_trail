@@ -56,7 +56,7 @@ public class ProfessionMenuView extends View {
                valid = false; //Sets the to invalid, so you can choose a valid profession
                break;
             default:
-                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
+               ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                valid = false; //Sets the answer to invalid answer to return
                break;
         }

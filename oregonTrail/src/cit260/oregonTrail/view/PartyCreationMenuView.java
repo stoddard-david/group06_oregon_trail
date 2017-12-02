@@ -66,7 +66,7 @@ public class PartyCreationMenuView extends View {
         
         //Random Health for testing party view
         Random rand = new Random();
-        partyMember.setHealth(rand.nextInt(101));
+        partyMember.setHealth(rand.nextInt(11)+80);
         
         partyMember.setStatus(1);
         

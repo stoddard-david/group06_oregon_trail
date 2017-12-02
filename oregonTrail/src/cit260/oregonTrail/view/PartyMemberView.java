@@ -16,7 +16,7 @@ import oregontrail.OregonTrail;
  *
  * @author Stoddard
  */
-public class PartyMemberView  extends View {
+public class PartyMemberView extends View {
     
     String menuMessage;
     PartyMember[] partyMembers;
@@ -28,6 +28,8 @@ public class PartyMemberView  extends View {
                   + "\n1 - Original Sort"
                   + "\n2 - Sort Names"
                   + "\n3 - Sort Health"
+                  + "\n4 - Save Current Status"
+                  + "\n5 - Load Previous Status"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------";
         
@@ -55,9 +57,7 @@ public class PartyMemberView  extends View {
     public boolean doAction(String choice) {
         
         choice = choice.toUpperCase(); // convert choice to upper case
-        
-        //For Invalid testing
-        this.partyMembers = new PartyMember[0];
+
         
         switch (choice) {
             case "1": // Orginal sort
@@ -68,8 +68,8 @@ public class PartyMemberView  extends View {
                  }
                  break;
             case "2": // Sort Names
-                 try {
-                 this.partyMembers = PartyMemberControl.sortByName(this.partyMembers);
+                try {
+                   this.partyMembers = PartyMemberControl.sortByName(this.partyMembers);
                 } catch (PartyMemberControlException me) {
                    ErrorView.display(this.getClass().getName(), me.getMessage());
                 } catch (Throwable te) {
@@ -78,12 +78,18 @@ public class PartyMemberView  extends View {
                 break;
             case "3": // Sort Health
                 try {
-                    this.partyMembers = PartyMemberControl.sortByHealth(this.partyMembers);
+                   this.partyMembers = PartyMemberControl.sortByHealth(this.partyMembers);
                 } catch (PartyMemberControlException me) {
                    ErrorView.display(this.getClass().getName(), me.getMessage());
                 } catch (Throwable te) {
                    ErrorView.display(this.getClass().getName(), te.getMessage());
                 }
+                break;
+            case "4": // save the current game
+                this.savePartyInfo();
+                break;
+            case "5": // save the current game
+                this.loadPartyInfo();
                 break;
             default:
                 ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
@@ -105,5 +111,41 @@ public class PartyMemberView  extends View {
           this.partyMembers[i] = game.getPartyMembers(i);
         }
     }
-   
+
+    private void savePartyInfo() {
+        
+        this.displayMessage = "\n\nEnter the file path for the file where the party "
+                            + "information will be saved to.";
+
+        String filePath = this.getInput();
+
+        setMenuText();
+        
+        try { 
+            PartyMemberControl.saveInfo(partyMembers, filePath);
+        } catch (Exception ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
+        }
+    }
+    
+    private void loadPartyInfo() {
+
+        this.displayMessage = "\n\nEnter the file path for the file where the party "
+                            + "information will be loaded from.";
+
+        String filePath = this.getInput();
+        
+        try {
+            this.displayMessage = PartyMemberControl.loadInfo(filePath)
+            + "\n"
+            + "\nPress any key to continue";
+            String temp = this.getInput();
+        } catch (Exception ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
+        }
+                
+        setMenuText();
+        
+    }
+    
 }

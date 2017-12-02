@@ -35,7 +35,7 @@ public class TownView  extends View {
                   + "\n9 - Stop to rest"
                   + "\n10 - Attempt to trade"
                   + "\nR - Return to Main Menu"
-                  + "\nQ - Quit game controls"
+                  + "\nQ - Quit"
                   + "\n-------------------------------------------"); 
     }
     
@@ -77,7 +77,7 @@ public class TownView  extends View {
                 break;
             case "R":
                 this.mainView();
-                break;
+                return true;
             default:
                 ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                 break;
