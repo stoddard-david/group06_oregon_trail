@@ -10,6 +10,7 @@ import cit260.oregonTrail.control.MapControl;
 import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
@@ -36,7 +37,7 @@ public class TownView  extends View {
                   + "\n4 - Change pace"
                   + "\n5 - Change rations"
                   + "\n6 - View Map"
-                  + "\n7 - View Inventory"
+                  + "\n7 - View Supplies"
                   + "\n8 - View Party Members"
                   + "\n9 - Stop to rest"
                   + "\n10 - Attempt to trade"
@@ -117,8 +118,8 @@ public class TownView  extends View {
     }
 
     private void viewInventory() {
-        InventoryControl low = new InventoryControl();
-        low.lowInventory();
+        SuppliesView supplies = new SuppliesView();
+        supplies.display();
     }
 
     private void viewPartyMembers() {
