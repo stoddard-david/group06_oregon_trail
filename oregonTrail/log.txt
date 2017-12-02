@@ -1,4 +1,0 @@
-cit260.oregonTrail.view.TownView -
-Invalid value: value can not be blank
-cit260.oregonTrail.view.PartyMemberView -
-Invalid value: value can not be blank

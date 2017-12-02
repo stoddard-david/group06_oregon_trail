@@ -6,12 +6,14 @@
 package cit260.oregonTrail.control;
 
 import cit260.oregonTrail.exception.MapControlException;
+import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.Map;
 import java.util.Random;
 import cit260.oregonTrail.model.PartyMember;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
+import oregontrail.OregonTrail;
 
 /**
  *
@@ -91,9 +93,13 @@ public class MapControl {
         map.setLocation(locations);
         
         RegularSceneType[] scenes = createScenes();        
-         
         assignScenesToLocations(scenes, locations);
-                
+        
+        Location[] path = createPath(locations);
+        map.setPath(path);
+        
+        map.setMiles(0);
+        
         return map;
     }
 
@@ -163,11 +169,27 @@ public class MapControl {
         RegularSceneType mountain = scenes[SceneType.Mountain.ordinal()];
         RegularSceneType end = scenes[SceneType.End.ordinal()];
 
+        locations[8][51].setName("Independence");
+        locations[8][47].setName("Kansas River");
+        locations[8][45].setName("Big Blue River");
+        locations[7][43].setName("Fort Kearney");
+        locations[6][40].setName("Chimney Rock");
+        locations[6][36].setName("Fort Larame");
+        locations[5][31].setName("Independence Rock");
+        locations[5][28].setName("South Pass");
+        locations[5][26].setName("Green River");
+        locations[5][23].setName("Soda Springs");
+        locations[5][20].setName("Fort Hall");
+        locations[3][11].setName("Fort Boise");
+        locations[3][10].setName("Snake River");
+        locations[2][6].setName("Blue Mountain");
+        locations[1][4].setName("The Dallas");
+        locations[1][1].setName("Oregon City");
+
         locations[8][51].setType(town);
         locations[8][50].setType(trail);
         locations[8][49].setType(trail);
         locations[8][48].setType(trail);
-        locations[8][51].setType(town);
         locations[8][47].setType(river);
         locations[8][46].setType(trail);
         locations[8][45].setType(river);
@@ -313,156 +335,77 @@ public class MapControl {
         locations[9][50].setType(river);
         locations[9][51].setType(river);
         locations[9][52].setType(river);        
-
-        locations[8][51].setVisited(false);
-        locations[8][50].setVisited(false);
-        locations[8][49].setVisited(false);
-        locations[8][48].setVisited(false);
-        locations[8][51].setVisited(false);
-        locations[8][47].setVisited(false);
-        locations[8][46].setVisited(false);
-        locations[8][45].setVisited(false);
-        locations[8][44].setVisited(false);
-        locations[7][43].setVisited(false);
-        locations[7][42].setVisited(false);
-        locations[6][41].setVisited(false);
-        locations[6][40].setVisited(false);
-        locations[6][39].setVisited(false);
-        locations[6][38].setVisited(false);
-        locations[6][37].setVisited(false);
-        locations[6][36].setVisited(false);
-        locations[6][35].setVisited(false);
-        locations[6][34].setVisited(false);
-        locations[6][33].setVisited(false);
-        locations[5][32].setVisited(false);
-        locations[5][31].setVisited(false);
-        locations[5][30].setVisited(false);
-        locations[5][29].setVisited(false);
-        locations[5][28].setVisited(false);
-        locations[5][27].setVisited(false);
-        locations[5][26].setVisited(false);
-        locations[5][25].setVisited(false);
-        locations[5][24].setVisited(false);
-        locations[5][23].setVisited(false);
-        locations[5][22].setVisited(false);
-        locations[5][21].setVisited(false);
-        locations[5][20].setVisited(false);
-        locations[5][19].setVisited(false);
-        locations[5][18].setVisited(false);
-        locations[5][17].setVisited(false);
-        locations[5][16].setVisited(false);
-        locations[5][15].setVisited(false);
-        locations[4][14].setVisited(false);
-        locations[4][13].setVisited(false);
-        locations[4][12].setVisited(false);
-        locations[3][11].setVisited(false);
-        locations[3][10].setVisited(false);
-        locations[3][9].setVisited(false);
-        locations[3][8].setVisited(false);
-        locations[2][7].setVisited(false);
-        locations[2][6].setVisited(false);
-        locations[1][5].setVisited(false);
-        locations[1][4].setVisited(false);
-        locations[1][3].setVisited(false);
-        locations[1][2].setVisited(false);
-        locations[1][1].setVisited(false);
-        locations[0][1].setVisited(false);
-        locations[0][17].setVisited(false);
-        locations[0][32].setVisited(false);
-        locations[0][33].setVisited(false);
-        locations[0][34].setVisited(false);
-        locations[0][35].setVisited(false);
-        locations[0][36].setVisited(false);
-        locations[0][37].setVisited(false);
-        locations[0][38].setVisited(false);
-        locations[1][8].setVisited(false);
-        locations[1][9].setVisited(false);
-        locations[1][10].setVisited(false);
-        locations[1][16].setVisited(false);
-        locations[1][18].setVisited(false);
-        locations[1][28].setVisited(false);
-        locations[1][29].setVisited(false);
-        locations[1][30].setVisited(false);
-        locations[1][31].setVisited(false);
-        locations[1][39].setVisited(false);
-        locations[1][40].setVisited(false);
-        locations[2][9].setVisited(false);
-        locations[2][13].setVisited(false);
-        locations[2][16].setVisited(false);
-        locations[2][19].setVisited(false);
-        locations[2][27].setVisited(false);
-        locations[2][42].setVisited(false);
-        locations[2][43].setVisited(false);
-        locations[2][44].setVisited(false);
-        locations[3][14].setVisited(false);
-        locations[3][18].setVisited(false);
-        locations[3][20].setVisited(false);
-        locations[3][21].setVisited(false);
-        locations[3][44].setVisited(false);
-        locations[4][10].setVisited(false);
-        locations[4][17].setVisited(false);
-        locations[4][19].setVisited(false);
-        locations[4][21].setVisited(false);
-        locations[4][26].setVisited(false);
-        locations[4][38].setVisited(false);
-        locations[4][39].setVisited(false);
-        locations[4][40].setVisited(false);
-        locations[4][41].setVisited(false);
-        locations[4][42].setVisited(false);
-        locations[4][43].setVisited(false);
-        locations[4][44].setVisited(false);
-        locations[4][45].setVisited(false);
-        locations[5][0].setVisited(false);
-        locations[5][11].setVisited(false);
-        locations[5][12].setVisited(false);
-        locations[5][13].setVisited(false);
-        locations[5][35].setVisited(false);
-        locations[5][36].setVisited(false);
-        locations[5][37].setVisited(false);
-        locations[5][46].setVisited(false);
-        locations[6][0].setVisited(false);
-        locations[6][1].setVisited(false);
-        locations[6][14].setVisited(false);
-        locations[6][18].setVisited(false);
-        locations[6][19].setVisited(false);
-        locations[6][20].setVisited(false);
-        locations[6][21].setVisited(false);
-        locations[6][26].setVisited(false);
-        locations[6][44].setVisited(false);
-        locations[6][47].setVisited(false);
-        locations[7][3].setVisited(false);
-        locations[7][4].setVisited(false);
-        locations[7][15].setVisited(false);
-        locations[7][16].setVisited(false);
-        locations[7][17].setVisited(false);
-        locations[7][21].setVisited(false);
-        locations[7][23].setVisited(false);
-        locations[7][26].setVisited(false);
-        locations[7][45].setVisited(false);
-        locations[7][47].setVisited(false);
-        locations[8][3].setVisited(false);
-        locations[8][20].setVisited(false);
-        locations[8][22].setVisited(false);
-        locations[8][27].setVisited(false);
-        locations[8][28].setVisited(false);
-        locations[8][29].setVisited(false);
-        locations[8][30].setVisited(false);
-        locations[9][4].setVisited(false);
-        locations[9][21].setVisited(false);
-        locations[9][24].setVisited(false);
-        locations[9][25].setVisited(false);
-        locations[9][26].setVisited(false);
-        locations[9][42].setVisited(false);
-        locations[9][43].setVisited(false);
-        locations[9][44].setVisited(false);
-        locations[9][45].setVisited(false);
-        locations[9][46].setVisited(false);
-        locations[9][47].setVisited(false);
-        locations[9][48].setVisited(false);
-        locations[9][49].setVisited(false);
-        locations[9][50].setVisited(false);
-        locations[9][51].setVisited(false);
-        locations[9][52].setVisited(false);
     }
     
+    private static Location[] createPath(Location[][] locations) throws MapControlException {
+        Location[] path = new Location[51];
+        
+        path[0]  = locations[8][51];
+        path[1]  = locations[8][50];
+        path[2]  = locations[8][49];
+        path[3]  = locations[8][48];
+        path[4]  = locations[8][47];
+        path[5]  = locations[8][46];
+        path[6]  = locations[8][45];
+        path[7]  = locations[8][44];
+        path[8]  = locations[7][43];
+        path[9]  = locations[7][42];
+        path[10] = locations[6][41];
+        path[11] = locations[6][40];
+        path[12] = locations[6][39];
+        path[13] = locations[6][38];
+        path[14] = locations[6][37];
+        path[15] = locations[6][36];
+        path[16] = locations[6][35];
+        path[17] = locations[6][34];
+        path[18] = locations[6][33];
+        path[19] = locations[5][32];
+        path[20] = locations[5][31];
+        path[21] = locations[5][30];
+        path[22] = locations[5][29];
+        path[23] = locations[5][28];
+        path[24] = locations[5][27];
+        path[25] = locations[5][26];
+        path[26] = locations[5][25];
+        path[27] = locations[5][24];
+        path[28] = locations[5][23];
+        path[29] = locations[5][22];
+        path[30] = locations[5][21];
+        path[31] = locations[5][20];
+        path[32] = locations[5][19];
+        path[33] = locations[5][18];
+        path[34] = locations[5][17];
+        path[35] = locations[5][16];
+        path[36] = locations[5][15];
+        path[37] = locations[4][14];
+        path[38] = locations[4][13];
+        path[39] = locations[4][12];
+        path[40] = locations[3][11];
+        path[41] = locations[3][10];
+        path[42] = locations[3][9];
+        path[43] = locations[3][8];
+        path[44] = locations[2][7];
+        path[45] = locations[2][6];
+        path[46] = locations[1][5];
+        path[47] = locations[1][4];
+        path[48] = locations[1][3];
+        path[49] = locations[1][2];
+        path[50]= locations[1][1];
+        
+        return path;
+    }
+    
+    public static String getLocationName() throws MapControlException{
+        String name = "";
+
+        Game game = OregonTrail.getCurrentGame();
+        Map map = game.getMap();
+        Location[] path = map.getPath();
+        
+        int index = map.getMiles()/40;
+        
+        name = path[index].getName();
+        
+        return name;
+    }
 }

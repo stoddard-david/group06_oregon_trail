@@ -6,12 +6,18 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.InventoryControl;
+import cit260.oregonTrail.control.MapControl;
 import cit260.oregonTrail.exception.GameControlException;
+import cit260.oregonTrail.exception.MapControlException;
+import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.Location;
+import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import oregontrail.OregonTrail;
 
 /**
  *
@@ -36,7 +42,15 @@ public class TownView  extends View {
                   + "\n10 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
-                  + "\n-------------------------------------------"); 
+                  + "\n-------------------------------------------");
+        
+        String locationName;
+        try {
+            locationName = MapControl.getLocationName();
+            this.displayMessage = "\nWelcome to " + locationName + this.displayMessage;
+        } catch (MapControlException ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());
+        }
     }
     
     @Override
@@ -141,5 +155,5 @@ public class TownView  extends View {
         // Display the main menu view
         mainMenuView.display();
     }
-    
+   
 }

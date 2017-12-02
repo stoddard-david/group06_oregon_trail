@@ -20,7 +20,6 @@ public class Location implements Serializable {
     private int coordinateHeight;
     private boolean visited;
     private RegularSceneType type;
-    private int order;
 
     //Constructor
     public Location(int coordinateWidth, int coordinateHeight) {
@@ -70,14 +69,7 @@ public class Location implements Serializable {
         this.type = type;
     }
 
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-    
+  
     //hashcode
     @Override
     public int hashCode() {
@@ -86,7 +78,6 @@ public class Location implements Serializable {
         hash = 53 * hash + Objects.hashCode(this.coordinateWidth);
         hash = 53 * hash + Objects.hashCode(this.coordinateHeight);
         hash = 53 * hash + Objects.hashCode(this.type);
-        hash = 53 * hash + this.order;
         return hash;
     }
 
@@ -103,9 +94,6 @@ public class Location implements Serializable {
             return false;
         }
         final Location other = (Location) obj;
-        if (this.order != other.order) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -124,7 +112,7 @@ public class Location implements Serializable {
     //toString
     @Override
     public String toString() {
-        return "Location{" + "name=" + name + ", coordinates=" + coordinateWidth + "," + coordinateHeight + ", type=" + type + ", order=" + order + '}';
+        return "Location{" + "name=" + name + ", coordinates=" + coordinateWidth + "," + coordinateHeight + ", type=" + type + "}";
     }
     
     
