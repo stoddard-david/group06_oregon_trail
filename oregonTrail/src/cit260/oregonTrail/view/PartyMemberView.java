@@ -118,14 +118,19 @@ public class PartyMemberView extends View {
                             + "information will be saved to.";
 
         String filePath = this.getInput();
-
-        setMenuText();
-        
+     
         try { 
             PartyMemberControl.saveInfo(partyMembers, filePath);
+            this.displayMessage = "\nSaved Sucessful"
+                + "\n"
+                + "\nPress any key to continue";
+            String temp = this.getInput();
         } catch (Exception ex) {
             ErrorView.display(this.getClass().getName(), ex.getMessage());
         }
+
+        setMenuText();
+
     }
     
     private void loadPartyInfo() {
