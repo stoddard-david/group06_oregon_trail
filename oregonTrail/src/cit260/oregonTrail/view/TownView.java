@@ -60,8 +60,7 @@ public class TownView  extends View {
         
         switch (choice) {
             case "1": // travel the trail
-                this.travelTrail();
-                break;
+                return true;
             case "2": // talk to people
                 this.advice();
                 break;

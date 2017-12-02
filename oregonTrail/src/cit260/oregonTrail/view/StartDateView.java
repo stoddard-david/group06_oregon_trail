@@ -5,6 +5,8 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.control.MapControl;
+import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.model.Game;
 import java.io.IOException;
@@ -69,7 +71,7 @@ public class StartDateView extends View {
                valid = false; //Set to false, so it won't exit
                break;
             default:
-                ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
+               ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
                valid = false; //Sets the answer to invalid answer to return
                break;
         }
@@ -100,15 +102,21 @@ public class StartDateView extends View {
 }
     
     private void displayNextView() {
-        
+
         /*
         // Create GameMenuView object
         GameMenuView gameMenuView = new GameMenuView();
-                
+            
         // Display the game menu view
         gameMenuView.display();
-*/
+            
         TownView townView = new TownView();
-        townView.display();
+        townView.display();*/
+            
+        try {      
+            MapControl.chooseLocationView();
+        } catch (MapControlException ex) {
+            ErrorView.display(this.getClass().getName(), ex.getMessage());        
+        }
     }
 }

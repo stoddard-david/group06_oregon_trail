@@ -138,6 +138,9 @@ public class GameControl {
         }        
         Game game = new Game();
         game.setPlayer(player);
+        game.setPace(1);
+        game.setRations(1);
+
         OregonTrail.setCurrentGame(game);
         
         if (game == null) {

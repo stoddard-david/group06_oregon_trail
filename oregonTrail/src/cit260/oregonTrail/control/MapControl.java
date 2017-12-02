@@ -13,6 +13,7 @@ import cit260.oregonTrail.model.PartyMember;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
+import cit260.oregonTrail.view.TownView;
 import oregontrail.OregonTrail;
 
 /**
@@ -154,9 +155,7 @@ public class MapControl {
         RegularSceneType end = scenes[SceneType.End.ordinal()];
         end.setDescription("You have made it.");
         end.setIndex(SceneType.End.ordinal());
-        
-
-       
+           
         return scenes;
     }
 
@@ -407,5 +406,43 @@ public class MapControl {
         name = path[index].getName();
         
         return name;
+    }
+    
+    public static void chooseLocationView() throws MapControlException {
+        Game game = OregonTrail.getCurrentGame();
+        Map map = game.getMap();
+        Location[] path = map.getPath();
+        RegularSceneType sceneType = new RegularSceneType();
+                
+        int index = 0;
+        int sceneIndex;
+        int miles = 0;
+        
+        boolean playing = true;
+        
+        while(playing) {
+
+            index = map.getMiles()/40;
+            sceneType = path[index].getType();
+            sceneIndex = sceneType.getIndex();
+
+            if (sceneIndex == SceneType.Town.ordinal() && !path[index].getVisited()) {
+                path[index].setVisited(true);
+                TownView townView = new TownView();
+                townView.display();
+            } else if (sceneIndex == SceneType.River.ordinal() && !path[index].getVisited()) {
+                path[index].setVisited(true);
+                TownView townView = new TownView();
+                townView.display();
+            } else if(sceneIndex == SceneType.Trail.ordinal() || path[index].getVisited()) {
+                miles = move((int) game.getPace(), game.getPartyMembers()); 
+                map.setMiles(map.getMiles() + miles);
+                path[index].setVisited(true);
+            } else {
+                playing = false;
+            }
+          
+        }
+        
     }
 }
