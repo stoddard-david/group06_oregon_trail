@@ -10,6 +10,7 @@ import cit260.oregonTrail.control.MapControl;
 import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
@@ -118,8 +119,11 @@ public class TownView  extends View {
     }
 
     private void viewInventory() {
+        Game currentGame = OregonTrail.getCurrentGame();
+        InventoryItem[] inventoryItems = currentGame.getInventoryItems();
         InventoryControl low = new InventoryControl();
-        low.lowInventory();
+        String inventoryLow = low.lowInventory(inventoryItems);
+        this.console.println(inventoryLow);
     }
 
     private void viewPartyMembers() {

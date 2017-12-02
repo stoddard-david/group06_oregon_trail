@@ -72,19 +72,21 @@ public class InventoryControl {
         
         int minQuantity = 1000;
         String item = "";
+        String list = "Type:  8Amount:\n";
+        String message = "";
         
-        /*for (int i = 0; i < InventoryItem.length; i++) {
-            if (InventoryItem.getInventoryQuantity[i] < minQuantity) {
-                minQuantity = InventoryItem.getInventoryQuantity[i];
-                item = "Your inventory of " + inventoryItem.getInventoryType[i] +
-                        " is at just" + minQuantity + " kind of low...";
+        for (int i = 0; i < inventoryItems.length; i++) {
+            if (inventoryItems[i].getQuantityOwned() < minQuantity) {
+                minQuantity = inventoryItems[i].getQuantityOwned();
+                item = "Your Inventory of " + inventoryItems[i].getInventoryType() +
+                        " is: " + minQuantity + ". That is kind of Low.\n";
             }
-        } */
-        return item;
-    }
-
-    public void lowInventory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        for (int i = 0; i < inventoryItems.length; i++ ) {
+            list += inventoryItems[i].getInventoryType() + "  " + inventoryItems[i].getQuantityOwned() + "\n";
+        }
+        message = item + "\n" + list;
+        return message;
     }
     
 }

@@ -26,6 +26,9 @@ public class Game implements Serializable {
     private InventoryItem[] items;
     private Map map;
 
+    public InventoryItem[] getInventoryItems() {
+        return items;
+    }
     //constructor
     public Game() {
         partyMembers = new PartyMember[5];

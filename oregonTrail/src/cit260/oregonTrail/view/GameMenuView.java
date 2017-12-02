@@ -6,9 +6,12 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.InventoryControl;
+import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.view.ViewInterface.View;
 import java.util.Arrays;
 import java.util.Scanner;
+import oregontrail.OregonTrail;
 
 /**
  *
@@ -88,8 +91,11 @@ public class GameMenuView extends View{
     }
 
     private void viewInventory() {
+        Game currentGame = OregonTrail.getCurrentGame();
+        InventoryItem[] inventoryItems = currentGame.getInventoryItems();
         InventoryControl low = new InventoryControl();
-        low.lowInventory();
+        String inventoryLow = low.lowInventory(inventoryItems);
+        this.console.println(inventoryLow);
     }
 
     private void viewPartyMembers() {
