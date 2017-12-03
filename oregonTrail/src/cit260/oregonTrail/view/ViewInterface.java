@@ -57,7 +57,6 @@ public interface ViewInterface {
         @Override
         public String getInput() {
             
-            
             String value = null; // value to be returned
             boolean valid = false; // initialize to not valid
         

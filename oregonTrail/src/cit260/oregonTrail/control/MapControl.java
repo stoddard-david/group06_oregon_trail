@@ -13,7 +13,11 @@ import cit260.oregonTrail.model.PartyMember;
 import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
+import cit260.oregonTrail.view.EndView;
+import cit260.oregonTrail.view.LandmarkView;
+import cit260.oregonTrail.view.RiverView;
 import cit260.oregonTrail.view.TownView;
+import cit260.oregonTrail.view.TrailView;
 import oregontrail.OregonTrail;
 
 /**
@@ -412,32 +416,65 @@ public class MapControl {
         Game game = OregonTrail.getCurrentGame();
         Map map = game.getMap();
         Location[] path = map.getPath();
-        RegularSceneType sceneType = new RegularSceneType();
                 
-        int index = 0;
-        int sceneIndex;
-        int miles = 0;
+        int index = map.getMiles()/40;;
+        RegularSceneType sceneType = new RegularSceneType();
+        sceneType = path[index].getType();
+        int sceneIndex = sceneType.getIndex();
+        
+        int miles;
         
         boolean playing = true;
+        map.setTraveling(true);        
         
-        while(playing) {
+        while(playing && map.getTraveling()) {
 
-            index = map.getMiles()/40;
-            sceneType = path[index].getType();
-            sceneIndex = sceneType.getIndex();
-
+            map.setTraveling(false);
             if (sceneIndex == SceneType.Town.ordinal() && !path[index].getVisited()) {
                 path[index].setVisited(true);
+                
                 TownView townView = new TownView();
                 townView.display();
             } else if (sceneIndex == SceneType.River.ordinal() && !path[index].getVisited()) {
                 path[index].setVisited(true);
-                TownView townView = new TownView();
-                townView.display();
+                
+                RiverView riverView = new RiverView();
+                riverView.display();
+            } else if (sceneIndex == SceneType.Landmark.ordinal() && !path[index].getVisited()) {
+                path[index].setVisited(true);
+                
+                LandmarkView landmarkView = new LandmarkView();
+                landmarkView.display();
             } else if(sceneIndex == SceneType.Trail.ordinal() || path[index].getVisited()) {
+                                
                 miles = move((int) game.getPace(), game.getPartyMembers()); 
                 map.setMiles(map.getMiles() + miles);
+                
+                //if getting off the trail
+                index = map.getMiles()/40;
+                sceneType = path[index].getType();
+                sceneIndex = sceneType.getIndex();
+                if (sceneIndex != SceneType.Trail.ordinal() && !path[index].getVisited()) { 
+                    //Set to miles to beginning of location, making landmarks, towns, forts, and rivers at the same location. Will get that view next
+                    map.setMiles(index*40);
+                    map.setTraveling(true);
+                } else {
+                    //Go to trail view
+                    if (!path[index].getVisited()){
+                      path[index].setVisited(true);
+                      TrailView trailView = new TrailView();
+                      trailView.display();
+                    } else {
+                      path[index].setVisited(true);
+                      map.setTraveling(true);
+                    }
+                    game.setDate(GameControl.changeDate(game.getDate()));
+                }
+            } else if (sceneIndex == SceneType.End.ordinal()) {
                 path[index].setVisited(true);
+                
+                EndView endView = new EndView();
+                endView.display();
             } else {
                 playing = false;
             }

@@ -5,6 +5,9 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.InventoryControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -27,7 +30,12 @@ public class InventoryControlTest {
         System.out.println("foodConsumed1");
         int rations = 2;
         int numPartyMembers = 3;
-        int result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        int result = 0;
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("result " + result);
         assertTrue(result >= 2 && result <= (rations * numPartyMembers));
         
@@ -36,7 +44,11 @@ public class InventoryControlTest {
         rations = 9;
         numPartyMembers = 1;
         int expResult = -1;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         
         // --- Test Case 3 ---
@@ -44,7 +56,11 @@ public class InventoryControlTest {
         rations = -4;
         numPartyMembers = 3;
         expResult = -1;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         
         // --- Test Case 4 ---
@@ -52,7 +68,11 @@ public class InventoryControlTest {
         rations = 2;
         numPartyMembers = 88;
         expResult = -1;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         
         // --- Test Case 5 ---
@@ -60,14 +80,22 @@ public class InventoryControlTest {
         rations = 3;
         numPartyMembers = -1;
         expResult = -1;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(expResult, result);
         
         // --- Test Case 6 ---
         System.out.println("foodConsumed6");
         rations = 1;
         numPartyMembers = 1;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("result " + result);
         assertTrue(result >= 1 && result <= (rations * numPartyMembers));
         
@@ -75,7 +103,11 @@ public class InventoryControlTest {
         System.out.println("foodConsumed7");
         rations = 3;
         numPartyMembers = 5;
-        result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        try {
+            result = InventoryControl.foodConsumed(rations, numPartyMembers);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(InventoryControlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("result " + result);
         assertTrue(result >= 3 && result <= (rations * numPartyMembers));
         
