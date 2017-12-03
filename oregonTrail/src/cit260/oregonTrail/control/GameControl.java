@@ -86,21 +86,86 @@ public class GameControl {
             case 1231:
                 return 101;
             default:
-                return date++;
+                date++;
+                return date;
         }
     }
     
-    public static int changePace(int option) throws GameControlException {
+    public static String getHumanDate(int date) {
+        String textDate = "";
+        
+        int month = date/100;
+        int day = date%100;
+
+        switch (month) {
+            case 1:
+                textDate = "January ";
+                break;
+            case 2:
+                textDate = "February ";
+                 break;
+           case 3:
+                textDate = "March ";
+                break;
+            case 4:
+                textDate = "April ";
+                break;
+            case 5:
+                textDate = "May ";
+                break;
+            case 6:
+                textDate = "June ";
+                break;
+            case 7:
+                textDate = "July ";
+                break;
+            case 8:
+                textDate = "August ";
+                break;
+            case 9:
+                textDate = "September ";
+                break;
+            case 10:
+                textDate = "October ";
+                break;
+            case 11:
+                textDate = "November ";
+                break;
+            case 12:
+                textDate = "December ";
+                break;
+            default:
+                textDate = "Unknown ";
+        }
+
+        if ((day >= 4 && day <= 20) || (day >= 24 && day <= 30)){
+            textDate = textDate + day + "th";
+        } else if (day == 1 || day == 21 || day == 31 ){
+            textDate = textDate + day + "st";
+        } else if (day == 2 || day == 22){
+            textDate = textDate + day + "nd";
+        } else if (day == 3 || day == 23){
+            textDate = textDate + day + "nd";
+        } else {
+            textDate = textDate + day;
+        }
+        
+        return textDate;
+    }
+    
+    public static void changePace(int option) throws GameControlException {
         if (option >= 1 &&  option <= 3) {
-            return option;
+            Game game = OregonTrail.getCurrentGame();
+            game.setPace(option);
         } else {
             throw new GameControlException("changePace option out of acceptable range.");
         }        
     }
     
-    public static int changeRations(int option) throws GameControlException {
+    public static void changeRations(int option) throws GameControlException {
         if (option >= 1 &&  option <= 3) {
-            return option;
+            Game game = OregonTrail.getCurrentGame();
+            game.setRations(option);
         } else {
             throw new GameControlException("changeRations option out of acceptable range.");
         }

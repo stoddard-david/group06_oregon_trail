@@ -20,6 +20,7 @@ public class Map implements Serializable {
     private Location[][] locations;
     private Location[] path;
     private int miles;
+    private boolean traveling;
 
     //constructor
     public Map() {
@@ -64,6 +65,14 @@ public class Map implements Serializable {
 
     public void setMiles(int miles) {
         this.miles = miles;
+    }
+    
+    public boolean getTraveling() {
+        return traveling;
+    }
+
+    public void setTraveling(boolean traveling) {
+        this.traveling = traveling;
     }
 
     //hashcode functions

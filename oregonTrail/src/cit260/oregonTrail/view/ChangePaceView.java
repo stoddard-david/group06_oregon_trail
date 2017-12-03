@@ -44,13 +44,16 @@ public class ChangePaceView extends View {
             switch (choice) {
                 case "1": // set pace to "Steady"
                     GameControl.changePace(1);
-                    break;
+                    this.console.println("Set to steady.");
+                    return true;
                 case "2": // set pace to "Strenuous"
                     GameControl.changePace(2);
-                    break;
+                    this.console.println("Set to strenuous.");
+                    return true;
                 case "3": // set pace to "Grueling"
                     GameControl.changePace(3);
-                    break;
+                    this.console.println("Set to Grueling.");
+                    return true;
                 default:
                     this.console.println("\n*** Invalid selection *** Try again");
                     break;

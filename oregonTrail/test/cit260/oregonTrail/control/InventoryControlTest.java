@@ -5,6 +5,9 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.InventoryControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

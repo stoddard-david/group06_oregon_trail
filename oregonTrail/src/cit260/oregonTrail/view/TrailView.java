@@ -5,53 +5,45 @@
  */
 package cit260.oregonTrail.view;
 
-import cit260.oregonTrail.control.InventoryControl;
+import cit260.oregonTrail.control.GameControl;
 import cit260.oregonTrail.control.MapControl;
-import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
-import cit260.oregonTrail.model.InventoryItem;
-import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oregontrail.OregonTrail;
 
 /**
  *
  * @author Stoddard
  */
-public class TownView extends View {
+public class TrailView extends View{
 
-    public TownView() {
+    public TrailView() {
         super("\n"
                   + "\n-------------------------------------------"
-                  + "\n| Town/Fort Control                       |"
+                  + "\n| On the Trail                            |"
                   + "\n-------------------------------------------"
-                  + "\n1 - Travel on the trail"
-                  + "\n2 - Talk to people"
-                  + "\n3 - General Store"
-                  + "\n4 - Change pace"
-                  + "\n5 - Change rations"
-                  + "\n6 - View Map"
-                  + "\n7 - View Supplies"
-                  + "\n8 - View Party Members"
-                  + "\n9 - Stop to rest"
-                  + "\n10 - Attempt to trade"
+                  + "\n1 - Continue on Trail"
+                  + "\n2 - Go hunting"
+                  + "\n3 - Change pace"
+                  + "\n4 - Change rations"
+                  + "\n5 - View Map"
+                  + "\n6 - View Supplies"
+                  + "\n7 - View Party Members"
+                  + "\n8 - Stop to rest"
+                  + "\n9 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
         
-        String locationName;
-        try {
-            locationName = MapControl.getLocationName();
-            this.displayMessage = "\nWelcome to " + locationName + this.displayMessage;
-        } catch (MapControlException ex) {
-            ErrorView.display(this.getClass().getName(), ex.getMessage());
-        }
+        Game game = OregonTrail.getCurrentGame();
+        Map map = game.getMap();
+
+        String currentDate = GameControl.getHumanDate(game.getDate());
+        int miles = map.getMiles();
+
+        this.displayMessage = "\n" + currentDate + "\nYou have traveled " + miles + " miles." + this.displayMessage;
     }
     
     @Override
@@ -63,31 +55,28 @@ public class TownView extends View {
             case "1": // travel the trail
                 travelTrail();
                 return true;
-            case "2": // talk to people
-                this.advice();
+            case "2": // purchase at general store
+                this.hunting();
                 break;
-            case "3": // purchase at general store
-                this.generalStore();
-                break;
-            case "4": // change travel pace
+            case "3": // change travel pace
                 this.changePace();
                 break;
-            case "5": // change food rations
+            case "4": // change food rations
                 this.changeRations();
                 break;
-            case "6": // view map
+            case "5": // view map
                 this.viewMap();
                 break;
-            case "7": // view inventory
+            case "6": // view inventory
                 this.viewInventory();
                 break;
-            case "8": //view party members
+            case "7": //view party members
                 this.viewPartyMembers();
                 break;
-            case "9": // stop and rest
+            case "8": // stop and rest
                 this.rest();
                 break;
-            case "10": // attempt to trade
+            case "9": // attempt to trade
                 this.trade();
                 break;
             case "R":
@@ -99,8 +88,7 @@ public class TownView extends View {
         }
         
         return false;
-    }
-    
+    }    
   
     private void changePace() {
         //display change pace menu
@@ -128,15 +116,6 @@ public class TownView extends View {
         party.display();
     }
 
-    private void advice() {
-        this.console.println("\n*** Get advice");
-    }
-
-    private void generalStore() {
-        StoreMenuView storeMenuView = new StoreMenuView();
-        storeMenuView.display();
-    }
-
     private void rest() {
         this.console.println("\n*** Rest");
     }
@@ -157,5 +136,10 @@ public class TownView extends View {
         Game game = OregonTrail.getCurrentGame();
         Map map = game.getMap();
         map.setTraveling(true);
-    }   
+    }
+
+    private void hunting() {
+        HuntingView huntingMenu = new HuntingView();
+        huntingMenu.display();
+    }    
 }

@@ -5,35 +5,27 @@
  */
 package cit260.oregonTrail.view;
 
-import cit260.oregonTrail.control.InventoryControl;
 import cit260.oregonTrail.control.MapControl;
-import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
-import cit260.oregonTrail.model.InventoryItem;
-import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oregontrail.OregonTrail;
 
 /**
  *
  * @author Stoddard
  */
-public class TownView extends View {
-
-    public TownView() {
+public class LandmarkView extends View{
+    
+    public LandmarkView() {
         super("\n"
                   + "\n-------------------------------------------"
-                  + "\n| Town/Fort Control                       |"
+                  + "\n| Landmark Control                        |"
                   + "\n-------------------------------------------"
                   + "\n1 - Travel on the trail"
                   + "\n2 - Talk to people"
-                  + "\n3 - General Store"
+                  + "\n3 - Go hunting"
                   + "\n4 - Change pace"
                   + "\n5 - Change rations"
                   + "\n6 - View Map"
@@ -48,7 +40,7 @@ public class TownView extends View {
         String locationName;
         try {
             locationName = MapControl.getLocationName();
-            this.displayMessage = "\nWelcome to " + locationName + this.displayMessage;
+            this.displayMessage = "\nYou have reached " + locationName + this.displayMessage;
         } catch (MapControlException ex) {
             ErrorView.display(this.getClass().getName(), ex.getMessage());
         }
@@ -67,7 +59,7 @@ public class TownView extends View {
                 this.advice();
                 break;
             case "3": // purchase at general store
-                this.generalStore();
+                this.hunting();
                 break;
             case "4": // change travel pace
                 this.changePace();
@@ -99,8 +91,7 @@ public class TownView extends View {
         }
         
         return false;
-    }
-    
+    }    
   
     private void changePace() {
         //display change pace menu
@@ -132,11 +123,6 @@ public class TownView extends View {
         this.console.println("\n*** Get advice");
     }
 
-    private void generalStore() {
-        StoreMenuView storeMenuView = new StoreMenuView();
-        storeMenuView.display();
-    }
-
     private void rest() {
         this.console.println("\n*** Rest");
     }
@@ -157,5 +143,10 @@ public class TownView extends View {
         Game game = OregonTrail.getCurrentGame();
         Map map = game.getMap();
         map.setTraveling(true);
-    }   
+    }
+
+    private void hunting() {
+        HuntingView huntingMenu = new HuntingView();
+        huntingMenu.display();
+    }
 }
