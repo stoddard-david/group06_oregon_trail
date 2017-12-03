@@ -1,0 +1,22 @@
+
+     Locations List      
+---------------------------
+
+Name                Visited        
+----                -------        
+Independence        true           
+Kansas River        false          
+Big Blue River      false          
+Fort Kearney        false          
+Chimney Rock        false          
+Fort Larame         false          
+Independence Rock   false          
+South Pass          false          
+Green River         false          
+Soda Springs        false          
+Fort Hall           false          
+Fort Boise          false          
+Snake River         false          
+Blue Mountain       false          
+The Dallas          false          
+Oregon City         false          

@@ -31,6 +31,7 @@ public class MainMenuView extends View {
                   + "\n4 - Game controls"
                   + "\n5 - Save game"
                   + "\n6 - Test Hunting"
+                  + "\n7 - View Locations"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
     }
@@ -67,6 +68,9 @@ public class MainMenuView extends View {
                 break;
             case "6": // test hunting
                 this.testHunting();
+                break;
+            case "7": // test hunting
+                this.displayLocationsView();
                 break;
             default:
                 ErrorView.display("MainMenuView", "*** Invalid selection *** Try again");
@@ -134,6 +138,11 @@ public class MainMenuView extends View {
         } catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
         }
+    }
+
+    private void displayLocationsView() {
+        LocationsView locationsView = new LocationsView();
+        locationsView.display();
     }
     
 }

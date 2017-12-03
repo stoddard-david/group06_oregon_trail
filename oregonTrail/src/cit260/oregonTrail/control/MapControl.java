@@ -14,6 +14,10 @@ import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
 import cit260.oregonTrail.view.TownView;
+import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.util.ArrayList;
 import oregontrail.OregonTrail;
 
 /**
@@ -444,5 +448,66 @@ public class MapControl {
           
         }
         
+    }
+
+    public static void createLocationsVisited() throws MapControlException{
+        String[][] locationsVisited = new String[51][3];
+        
+        Game game = OregonTrail.getCurrentGame();
+        Map map = game.getMap();
+        Location[] path = map.getPath();
+        RegularSceneType sceneType = new RegularSceneType(); 
+        
+//        for (int i = 0; i > locationsVisited[0].length; i++) {
+//            path[i].getName();
+//        }
+//        
+//        for (int i = 0; i > locationsVisited[1].length; i++) {
+//            sceneType.getDescription();
+//        }
+//        
+//        for (int i = 0; i > locationsVisited[2].length; i++) {
+//            boolean visitCheck = path[i].getVisited();
+//            
+//
+//        }
+        
+       
+        out.printf("%n%-20s%-15s","Name", "Visited");
+        out.printf("%n%-20s%-15s","----", "-------");
+        
+        for (Location path1 : path) {
+            
+
+            if (path1.getName() != null) {
+                out.printf("%n%-20s%-15s", path1.getName(), path1.getVisited());
+            }
+        }
+        
+    }
+
+    public static void saveLocationsVisited(String filepath) throws MapControlException{
+         try (PrintWriter out = new PrintWriter(filepath)) {
+             
+            Game game = OregonTrail.getCurrentGame();
+            Map map = game.getMap();
+            Location[] path = map.getPath();
+            RegularSceneType sceneType = new RegularSceneType();
+            
+            out.println("\n     Locations List      ");
+            out.println("---------------------------");
+            out.printf("%n%-20s%-15s","Name", "Visited");
+            out.printf("%n%-20s%-15s","----", "-------");
+
+            for (Location path1 : path) {
+
+
+                if (path1.getName() != null) {
+                    out.printf("%n%-20s%-15s", path1.getName(), path1.getVisited());
+                }
+            }
+         } catch (IOException ex) {
+             throw new MapControlException(ex.getMessage());
+         }
     }
 }

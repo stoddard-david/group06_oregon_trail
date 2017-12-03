@@ -12,6 +12,8 @@ import java.io.Serializable;
  * @author dglinzey
  */
 public class Map implements Serializable {
+
+
     
     private int height;
     private int width;
