@@ -5,6 +5,9 @@
  */
 package cit260.oregonTrail.view;
 
+import cit260.oregonTrail.control.InventoryControl;
+import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,9 +23,10 @@ import oregontrail.OregonTrail;
 public class StoreQuantityView {
     
     private String menu;
-    
+        
     protected final BufferedReader keyboard = OregonTrail.getInFile();
     protected final PrintWriter console = OregonTrail.getOutFile();
+    private String item;
     
     public StoreQuantityView(){
     
@@ -33,9 +37,12 @@ public class StoreQuantityView {
                   + "\n Enter amount:                             "
                   + "\n-------------------------------------------";
     }
-    public void displayStoreQuantityView() {
+    public void displayStoreQuantityView(String itemNumber) {
         
-        boolean done = false; // set flag to not done
+        item = itemNumber;
+        int indexNum = Integer.parseInt(item);
+        int indexNumber = indexNum - 1;
+        boolean done = false; // set flag to not done// set flag to not done
         do {
             // prompt for and get players name
             int menuOption = this.getMenuOption();
@@ -43,7 +50,7 @@ public class StoreQuantityView {
                 return; // exit the game
             
             // do the requested action and display the next view
-            done = this.doAction(menuOption);
+            done = this.doAction(menuOption, indexNumber);
             
         } while (!done);
     }
@@ -77,17 +84,19 @@ public class StoreQuantityView {
         return value; // return the value entered
     }
 
-    private boolean doAction(int menuOption) {
+    private boolean doAction(int menuOption, int indexNumber) {
         
         //get quantity
         int quantity = menuOption;
-        this.updateSupplies();
+        this.updateSupplies(quantity, indexNumber);
         return true;
     }
 
-    private void updateSupplies() {
-        StoreMenuView storeMenuView = new StoreMenuView();
-        storeMenuView.display();
+    private void updateSupplies(int quantity, int indexNumber) {
+        Game currentGame = OregonTrail.getCurrentGame();
+        InventoryItem[] inventoryItems = currentGame.getInventoryItems();
+        InventoryControl supplies = new InventoryControl();
+        supplies.updateSupplies(inventoryItems, quantity, indexNumber);
     }
 
 }

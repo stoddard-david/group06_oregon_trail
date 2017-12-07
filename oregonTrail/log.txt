@@ -1,2 +1,0 @@
-cit260.oregonTrail.view.StartDateView -
-*** Invalid selection *** Try again

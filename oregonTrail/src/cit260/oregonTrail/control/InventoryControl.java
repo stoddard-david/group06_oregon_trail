@@ -90,7 +90,6 @@ public class InventoryControl {
     
     public static void viewSupplies(InventoryItem[] inventoryItems) {
         
-        InventoryItem tempItem = new InventoryItem();
         out.printf("%n%-30s%6s","Supply","Quantity");
         out.printf("%n%-30s%6s","-----","-------");
         
@@ -115,6 +114,13 @@ public class InventoryControl {
             throw new InventoryControlException(ex.getMessage());
         }
 
+    }
+    public static void updateSupplies(InventoryItem[] inventoryItems, int quantity, int indexNumber){
+    
+        int currentQuantity = 0;
+        currentQuantity = inventoryItems[indexNumber].getQuantityOwned();
+        currentQuantity = currentQuantity + quantity;
+        inventoryItems[indexNumber].setQuantityOwned(currentQuantity);                
     }
     
 }
