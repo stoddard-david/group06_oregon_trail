@@ -14,9 +14,8 @@ public enum Animal {
     Buffalo("Buffalo",1.0,150,90),
     Bear("Bear",1.2,90,65),
     Deer("Deer",2.0,75,35),
-    Elk("Elk",2.0,75,35),
     Rabbit("Rabbit",4.0,10,7),
-    Squirrel("Suqirrel",6.0,5,2);
+    Squirrel("Squirrel",6.0,5,2);
     
     private final String type;
     private final double speed;

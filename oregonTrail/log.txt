@@ -1,2 +1,2 @@
-cit260.oregonTrail.view.EndView -
-Invalid value: value can not be blank
+cit260.oregonTrail.view.StartDateView -
+*** Invalid selection *** Try again
