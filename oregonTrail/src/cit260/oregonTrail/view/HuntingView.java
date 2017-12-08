@@ -59,8 +59,6 @@ public class HuntingView  extends View{
         
         NumberFormat formatter = new DecimalFormat("#0.00");
         
-        
-
         this.console.println("\n" + this.displayMessage);
         
         for(int i=0; i<4; i++) {
@@ -85,7 +83,12 @@ public class HuntingView  extends View{
             
             // do the requested action and display the next view
             if (value.length() > 0) {
-                done = this.doAction(value);
+                if (bullets.getQuantityOwned() > 0) {
+                    done = this.doAction(value);
+                    bullets.setQuantityOwned(bullets.getQuantityOwned()-1);
+                } else {
+                    this.console.println("You have no bullets.");
+                }
             }
         }
         

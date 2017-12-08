@@ -130,7 +130,6 @@ public class PartyMemberView extends View {
         }
 
         setMenuText();
-
     }
     
     private void loadPartyInfo() {

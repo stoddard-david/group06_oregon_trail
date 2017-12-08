@@ -47,7 +47,10 @@ public class GameControl {
             throw new GameControlException(e.getMessage());
         }
         
-        OregonTrail.setCurrentGame(game);
+        Map map = game.getMap();
+        map.setTraveling(true);
+        
+        OregonTrail.setCurrentGame(game);        
     }
 
     public static void endGame() {
