@@ -43,32 +43,32 @@ public class StoreMenuView extends View {
             case "1": // purchase flour
                 itemNumber = "1";
                 itemName = "flour";
-               displayNextView();
+               displayNextView(itemNumber);
                break;
             case "2": // purchase meat
                itemNumber = "2";
                itemName = "meat";
-               displayNextView();
+               displayNextView(itemNumber);
                break;
             case "3": // purchase water
                itemNumber = "3";
                itemName = "water";
-               displayNextView();
+               displayNextView(itemNumber);
                break;
             case "4": // purchase oxen
                itemNumber = "4";
                itemName = "oxen";
-               displayNextView();
+               displayNextView(itemNumber);
                break;
             case "5": // purchase wagon parts
                itemNumber = "5";
                itemName = "wagon parts";
-               displayNextView();
+               displayNextView(itemNumber);
                break;
             case "6": // purchase bullets
                itemNumber = "6";
                itemName = "bullets";
-               displayNextView();               
+               displayNextView(itemNumber);               
                break;
             default:
                 ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
@@ -78,10 +78,10 @@ public class StoreMenuView extends View {
         return false;
     }
 
-    private void displayNextView() {
+    private void displayNextView(String itemNumber) {
         //creates store quantity view object
         StoreQuantityView storeQuantityView = new StoreQuantityView();
         //display store quantity view
-        storeQuantityView.displayStoreQuantityView();
+        storeQuantityView.displayStoreQuantityView(itemNumber);
     }
 }

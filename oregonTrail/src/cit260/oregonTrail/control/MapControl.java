@@ -5,8 +5,11 @@
  */
 package cit260.oregonTrail.control;
 
+import cit260.oregonTrail.exception.InventoryControlException;
 import cit260.oregonTrail.exception.MapControlException;
+import cit260.oregonTrail.exception.PartyMemberControlException;
 import cit260.oregonTrail.model.Game;
+import cit260.oregonTrail.model.InventoryItem;
 import cit260.oregonTrail.model.Map;
 import java.util.Random;
 import cit260.oregonTrail.model.PartyMember;
@@ -15,6 +18,7 @@ import cit260.oregonTrail.model.RegularSceneType;
 import cit260.oregonTrail.model.SceneType;
 import cit260.oregonTrail.view.EndView;
 import cit260.oregonTrail.view.LandmarkView;
+import cit260.oregonTrail.view.MainMenuView;
 import cit260.oregonTrail.view.RiverView;
 import cit260.oregonTrail.view.TownView;
 import java.io.IOException;
@@ -416,10 +420,12 @@ public class MapControl {
         return name;
     }
     
-    public static void chooseLocationView() throws MapControlException {
+    public static void chooseLocationView() throws MapControlException, PartyMemberControlException, InventoryControlException {
         Game game = OregonTrail.getCurrentGame();
         Map map = game.getMap();
         Location[] path = map.getPath();
+        InventoryItem meat = game.getInventoryItem(1);
+        PartyMember[] party = game.getPartyMembers();
                 
         int index = map.getMiles()/40;;
         RegularSceneType sceneType = new RegularSceneType();
@@ -427,53 +433,73 @@ public class MapControl {
         int sceneIndex = sceneType.getIndex();
         
         int miles;
-        
+                
         boolean playing = true;
         map.setTraveling(true);        
+        
+        boolean notDead = true;
+        int numberAlive = 0;
+        int consumed = 0;
+        
         
         while(playing && map.getTraveling()) {
 
             map.setTraveling(false);
-            if (sceneIndex == SceneType.Town.ordinal() && !path[index].getVisited()) {
-                path[index].setVisited(true);
-                
+            if (sceneIndex == SceneType.Town.ordinal() && !path[index].getVisited()) {             
                 TownView townView = new TownView();
                 townView.display();
-            } else if (sceneIndex == SceneType.River.ordinal() && !path[index].getVisited()) {
                 path[index].setVisited(true);
-                
+            } else if (sceneIndex == SceneType.River.ordinal() && !path[index].getVisited()) {                
                 RiverView riverView = new RiverView();
                 riverView.display();
-            } else if (sceneIndex == SceneType.Landmark.ordinal() && !path[index].getVisited()) {
                 path[index].setVisited(true);
-                
+            } else if (sceneIndex == SceneType.Landmark.ordinal() && !path[index].getVisited()) {
                 LandmarkView landmarkView = new LandmarkView();
                 landmarkView.display();
+                path[index].setVisited(true);
             } else if(sceneIndex == SceneType.Trail.ordinal() || path[index].getVisited()) {
-                                
+                
+                if (!path[index].getVisited()){
+                   TrailView trailView = new TrailView();
+                   trailView.display();
+                   path[index].setVisited(true);
+                } else {
+                    map.setTraveling(true);
+                }
+                    
                 miles = move((int) game.getPace(), game.getPartyMembers()); 
                 map.setMiles(map.getMiles() + miles);
+                game.setDate(GameControl.changeDate(game.getDate()));
+                
+                notDead = PartyMemberControl.changeHealth(party, (int) game.getPace(), (int) game.getRations(), meat);
+                if (!notDead) {
+                    map.setTraveling(false);
+                    MainMenuView mainMenuView = new MainMenuView(); 
+                    mainMenuView.display();
+                }                
+                
+                numberAlive=0;
+                for (int i=0; i<party.length; i++) {
+                    if (party[i].getHealth() > 0) {
+                        numberAlive++;
+                    }                    
+                }
+                
+                if (numberAlive > 0) {
+                    consumed = InventoryControl.foodConsumed((int) game.getRations(), numberAlive);
+                    meat.setQuantityOwned(meat.getQuantityOwned() - consumed);
+                }
                 
                 //if getting off the trail
                 index = map.getMiles()/40;
                 sceneType = path[index].getType();
                 sceneIndex = sceneType.getIndex();
+                
                 if (sceneIndex != SceneType.Trail.ordinal() && !path[index].getVisited()) { 
                     //Set to miles to beginning of location, making landmarks, towns, forts, and rivers at the same location. Will get that view next
                     map.setMiles(index*40);
-                    map.setTraveling(true);
-                } else {
-                    //Go to trail view
-                    if (!path[index].getVisited()){
-                      path[index].setVisited(true);
-                      TrailView trailView = new TrailView();
-                      trailView.display();
-                    } else {
-                      path[index].setVisited(true);
-                      map.setTraveling(true);
-                    }
-                    game.setDate(GameControl.changeDate(game.getDate()));
                 }
+                
             } else if (sceneIndex == SceneType.End.ordinal()) {
                 path[index].setVisited(true);
                 

@@ -6,6 +6,7 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
+import cit260.oregonTrail.control.MapControl;
 import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
@@ -54,8 +55,11 @@ public class MainMenuView extends View {
                 }
                break;
             case "2": // get and start an existing game
-                this.startExistingGame();
-                break;
+                if (this.startExistingGame()) {
+                    return true;
+                } else {
+                    break;
+                }
             case "3": // display the help menu
                 this.displayHelpMenu();
                 break;
@@ -85,7 +89,7 @@ public class MainMenuView extends View {
         }
     }
 
-    private void startExistingGame() {
+    private boolean startExistingGame() {
         String tempString = this.displayMessage;
         this.displayMessage = "\n\nEnter the file path for the file where the game"
                             + "is to be loaded.";
@@ -96,9 +100,20 @@ public class MainMenuView extends View {
         
         try {
             GameControl.loadGame(filePath);
+            
+            try {      
+                MapControl.chooseLocationView();
+            } catch (MapControlException ex) {
+                ErrorView.display(this.getClass().getName(), ex.getMessage());
+                return false;
+            }
+            
         } catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
+            return false;
         }
+        
+        return true;
     }
 
     private void displayHelpMenu() {
