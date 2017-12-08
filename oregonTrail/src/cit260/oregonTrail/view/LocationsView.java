@@ -22,7 +22,7 @@ public class LocationsView extends View {
         
         super("\n"
                   + "\n-------------------------------------------"
-                  + "\n| View Locations                       |"
+                  + "\n| View Locations                          |"
                   + "\n-------------------------------------------"
                   + "\n1 - View Locations Visited/Not Visited"
                   + "\n2 - Save a Report of Locations Visited/Not Visited"
@@ -75,7 +75,7 @@ public class LocationsView extends View {
         } catch (Exception ex) {
             ErrorView.display(this.getClass().getName(), ex.getMessage());
         }
-
+        
     }
 
     

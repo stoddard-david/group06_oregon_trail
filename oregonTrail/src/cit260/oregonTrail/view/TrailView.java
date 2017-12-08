@@ -29,10 +29,11 @@ public class TrailView extends View{
                   + "\n3 - Change pace"
                   + "\n4 - Change rations"
                   + "\n5 - View Map"
-                  + "\n6 - View Supplies"
-                  + "\n7 - View Party Members"
-                  + "\n8 - Stop to rest"
-                  + "\n9 - Attempt to trade"
+                  + "\n6 - View Locations"
+                  + "\n7 - View Supplies"
+                  + "\n8 - View Party Members"
+                  + "\n9 - Stop to rest"
+                  + "\n10 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -67,16 +68,19 @@ public class TrailView extends View{
             case "5": // view map
                 this.viewMap();
                 break;
-            case "6": // view inventory
+            case "6": // locations report
+                this.displayLocationsView();
+                break;
+            case "7": // view inventory
                 this.viewInventory();
                 break;
-            case "7": //view party members
+            case "8": //view party members
                 this.viewPartyMembers();
                 break;
-            case "8": // stop and rest
+            case "9": // stop and rest
                 this.rest();
                 break;
-            case "9": // attempt to trade
+            case "10": // attempt to trade
                 this.trade();
                 break;
             case "R":
@@ -142,4 +146,9 @@ public class TrailView extends View{
         HuntingView huntingMenu = new HuntingView();
         huntingMenu.display();
     }    
+    
+    private void displayLocationsView() {
+        LocationsView locationsView = new LocationsView();
+        locationsView.display();
+    }
 }

@@ -65,9 +65,6 @@ public class MainMenuView extends View {
             case "5": // save the current game
                 this.saveGame();
                 break;
-            case "6": // locations report
-                this.displayLocationsView();
-                break;
             default:
                 ErrorView.display("MainMenuView", "*** Invalid selection *** Try again");
                 break;
@@ -131,9 +128,6 @@ public class MainMenuView extends View {
         }
     }
 
-    private void displayLocationsView() {
-        LocationsView locationsView = new LocationsView();
-        locationsView.display();
-    }
+    
     
 }
