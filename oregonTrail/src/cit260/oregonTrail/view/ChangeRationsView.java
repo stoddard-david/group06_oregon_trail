@@ -18,8 +18,7 @@ import java.util.logging.Logger;
 public class ChangeRationsView extends View {
     
     public ChangeRationsView() {
-        super("\n"
-                  + "\n-------------------------------------------"
+        super("-------------------------------------------"
                   + "\n| Change your rations level               |"
                   + "\n-------------------------------------------"
                   + "\n1 - Filling -- Meals are large and generous."
@@ -28,6 +27,12 @@ public class ChangeRationsView extends View {
                   + "\nand your health may suffer."
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
+        
+        try {
+            this.console.println(GameControl.viewRations());
+        } catch (GameControlException ex) {
+            ErrorView.display(this.getClass().getName(), "Error printing rations: " + ex.getMessage());
+        }
     }
     
     @Override

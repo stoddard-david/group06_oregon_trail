@@ -44,6 +44,7 @@ public class HuntingView  extends View{
                   + "\n-------------------------------------------"
                   + "\nYou will type BANG, POW, or WHAM to shoot. "
                   + "\nJust hit ENTER to not shoot the animal.    "
+                  + "\n\nNow you must wait for an animal.         "
                   + "\n-------------------------------------------");
     }
     

@@ -20,8 +20,7 @@ public class ChangePaceView extends View {
     
     
     public ChangePaceView() {
-        super("\n"
-                  + "\n-------------------------------------------"
+        super("-------------------------------------------"
                   + "\n| Change your pace of travel                |"
                   + "\n-------------------------------------------"
                   + "\n1 - Steady --You travel 8 hours a day. You take many rests and rarely get very tired."
@@ -31,7 +30,13 @@ public class ChangePaceView extends View {
                   + "\nuntil dark. You rarely rest and you don't get enough sleep. You finish each"
                   + "\nday exhausted and your health suffers."
                   + "\nQ - Quit"
-                  + "\n-------------------------------------------"); 
+                  + "\n-------------------------------------------");
+        
+        try {
+            this.console.println(GameControl.viewPace());
+        } catch (GameControlException ex) {
+            ErrorView.display(this.getClass().getName(), "Error printing pace: " + ex.getMessage());
+        }
     }
 
     
@@ -61,7 +66,7 @@ public class ChangePaceView extends View {
             
             return false;
         } catch (GameControlException ex) {
-            Logger.getLogger(ChangePaceView.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorView.display(this.getClass().getName(), "Error: " + ex.getMessage());
         }
         return false;
     }
