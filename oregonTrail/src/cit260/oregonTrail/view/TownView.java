@@ -37,10 +37,11 @@ public class TownView extends View {
                   + "\n4 - Change pace"
                   + "\n5 - Change rations"
                   + "\n6 - View Map"
-                  + "\n7 - View Supplies"
-                  + "\n8 - View Party Members"
-                  + "\n9 - Stop to rest"
-                  + "\n10 - Attempt to trade"
+                  + "\n7 - View Locations"
+                  + "\n8 - View Supplies"
+                  + "\n9 - View Party Members"
+                  + "\n10 - Stop to rest"
+                  + "\n11 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -78,16 +79,19 @@ public class TownView extends View {
             case "6": // view map
                 this.viewMap();
                 break;
-            case "7": // view inventory
+            case "7": // locations report
+                this.displayLocationsView();
+                break;
+            case "8": // view inventory
                 this.viewInventory();
                 break;
-            case "8": //view party members
+            case "9": //view party members
                 this.viewPartyMembers();
                 break;
-            case "9": // stop and rest
+            case "10": // stop and rest
                 this.rest();
                 break;
-            case "10": // attempt to trade
+            case "11": // attempt to trade
                 this.trade();
                 break;
             case "R":
@@ -158,4 +162,9 @@ public class TownView extends View {
         Map map = game.getMap();
         map.setTraveling(true);
     }   
+    
+    private void displayLocationsView() {
+        LocationsView locationsView = new LocationsView();
+        locationsView.display();
+    }
 }

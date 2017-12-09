@@ -55,19 +55,32 @@ public class HelpMenuView extends View {
     }
 
     private void howMove() {
-        this.console.println("*** howMove function called ***");
+        this.displayMessage = "\n\nWhen you choose to continue on the trail, your wagon party "
+                            + "\nwill move along the trail according to the pace that you have chosen."
+                            + "\nTake time to rest along the way to help your party regain health"
+                            + "\nbut don't take too long. Winter is coming!";
     }
 
     private void howHunt() {
-        this.console.println("*** howHunt function called ***");
+        this.displayMessage = "\n\nIf you want more food while on the trail, you can choose "
+                            + "\nto go hunting. You will encounter animals and need quick reflexes"
+                            + "\nto shoot the animal. Hopefully you won't run out of bullets before"
+                            + "\nyou get the meat you need!";
     }
 
     private void howHealth() {
-        this.console.println("*** howHealth function called ***");
+        this.displayMessage = "\n\nAs you travel along the trail, members in your party might get "
+                            + "\nhurt or get sick. Someone might even die if left untreated. Party"
+                            + "\nmembers are more likely to get sick if you are low on food supplies"
+                            + "\nor the pace is too fast. Stop to rest and take care of your party"
+                            + "\nmembers if you need to.";
     }
 
     private void howRiver() {
-        this.console.println("*** howRiver function called ***");
+        this.displayMessage = "\n\nRivers are trecherous. Not only do you need to think about the"
+                            + "\ndepth of the river and the speed of the water, but you need to "
+                            + "\nthink about how much your wagon weighs. If the river is too strong,"
+                            + "\nsomeone might drown or your wagon might tip over.";
     }
 
 }
