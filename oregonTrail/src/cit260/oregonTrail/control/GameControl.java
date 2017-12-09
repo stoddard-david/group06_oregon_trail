@@ -174,6 +174,39 @@ public class GameControl {
         }
     }
     
+    public static String viewPace()  throws GameControlException {
+        Game game = OregonTrail.getCurrentGame();
+        int pace = (int) game.getPace();
+        
+        switch (pace) {
+            case 1:
+                return "\n\nPace is currently steady.";
+            case 2:
+                return "\n\nPace is currently strenuous.";
+            case 3:
+                return "\n\nPace is currently grueling.";
+            default:
+                return "\n\nPace is currently unknown.";
+        }
+    }
+    
+    public static String viewRations()  throws GameControlException {
+        Game game = OregonTrail.getCurrentGame();
+        int ration = (int) game.getRations();
+        
+        switch (ration) {
+            case 1:
+                return "\n\nRations are currently filling.";
+            case 2:
+                return "\n\nRations are currently meager.";
+            case 3:
+                return "\n\nRations are currently bare bones.";
+            default:
+                return "\n\nRations are currently unknown.";
+        }
+    }
+            
+    
     public static void eventChance() {
         
     }

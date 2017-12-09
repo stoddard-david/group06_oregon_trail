@@ -1,0 +1,4 @@
+cit260.oregonTrail.view.TrailView -
+Invalid value: value can not be blank
+cit260.oregonTrail.view.TrailView -
+*** Invalid selection *** Try again
