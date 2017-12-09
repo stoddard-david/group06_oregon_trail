@@ -31,7 +31,6 @@ public class RiverView extends View {
                   + "\n6 - View Supplies"
                   + "\n7 - View Party Members"
                   + "\n8 - Stop to rest"
-                  + "\n9 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -74,9 +73,6 @@ public class RiverView extends View {
                 break;
             case "8": // stop and rest
                 this.rest();
-                break;
-            case "9": // attempt to trade
-                this.trade();
                 break;
             case "R":
                 this.mainView();

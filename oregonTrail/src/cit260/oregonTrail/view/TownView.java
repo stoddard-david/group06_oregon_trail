@@ -41,7 +41,6 @@ public class TownView extends View {
                   + "\n8 - View Supplies"
                   + "\n9 - View Party Members"
                   + "\n10 - Stop to rest"
-                  + "\n11 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -90,9 +89,6 @@ public class TownView extends View {
                 break;
             case "10": // stop and rest
                 this.rest();
-                break;
-            case "11": // attempt to trade
-                this.trade();
                 break;
             case "R":
                 this.mainView();
@@ -143,10 +139,6 @@ public class TownView extends View {
 
     private void rest() {
         this.console.println("\n*** Rest");
-    }
-
-    private void trade() {
-        this.console.println("\n*** Trade");
     }
 
     private void mainView() {

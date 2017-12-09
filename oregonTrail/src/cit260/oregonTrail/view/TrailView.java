@@ -33,7 +33,6 @@ public class TrailView extends View{
                   + "\n7 - View Supplies"
                   + "\n8 - View Party Members"
                   + "\n9 - Stop to rest"
-                  + "\n10 - Attempt to trade"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -80,9 +79,6 @@ public class TrailView extends View{
             case "9": // stop and rest
                 this.rest();
                 break;
-            case "10": // attempt to trade
-                this.trade();
-                break;
             case "R":
                 this.mainView();
                 return true;
@@ -122,10 +118,6 @@ public class TrailView extends View{
 
     private void rest() {
         this.console.println("\n*** Rest");
-    }
-
-    private void trade() {
-        this.console.println("\n*** Trade");
     }
 
     private void mainView() {

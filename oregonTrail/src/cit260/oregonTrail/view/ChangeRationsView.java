@@ -43,7 +43,7 @@ public class ChangeRationsView extends View {
             
             switch (choice) {
                 case "1": // set rations to "Filling"
-                    GameControl.changeRations(3);
+                    GameControl.changeRations(1);
                     this.console.println("Set to Filling.");
                     return true;
                 case "2": // set rations to "Meager"
@@ -51,6 +51,7 @@ public class ChangeRationsView extends View {
                     this.console.println("Set to Meager.");
                     return true;
                 case "3": // set rations to "Bare Bones"
+                    GameControl.changeRations(3);
                     this.console.println("Set to Bare Bones.");
                     return true;
                 default:
