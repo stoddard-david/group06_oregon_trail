@@ -5,19 +5,11 @@
  */
 package cit260.oregonTrail.view;
 
-import cit260.oregonTrail.control.InventoryControl;
 import cit260.oregonTrail.control.MapControl;
-import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
-import cit260.oregonTrail.model.InventoryItem;
-import cit260.oregonTrail.model.Location;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oregontrail.OregonTrail;
 
 /**
@@ -32,15 +24,14 @@ public class TownView extends View {
                   + "\n| Town/Fort Control                       |"
                   + "\n-------------------------------------------"
                   + "\n1 - Travel on the trail"
-                  + "\n2 - Talk to people"
-                  + "\n3 - General Store"
-                  + "\n4 - Change pace"
-                  + "\n5 - Change rations"
-                  + "\n6 - View Map"
-                  + "\n7 - View Locations"
-                  + "\n8 - View Supplies"
-                  + "\n9 - View Party Members"
-                  + "\n10 - Stop to rest"
+                  + "\n2 - General Store"
+                  + "\n3 - Change pace"
+                  + "\n4 - Change rations"
+                  + "\n5 - View Map"
+                  + "\n6 - View Locations"
+                  + "\n7 - View Supplies"
+                  + "\n8 - View Party Members"
+                  + "\n9 - Stop to rest"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -63,31 +54,28 @@ public class TownView extends View {
             case "1": // travel the trail
                 travelTrail();
                 return true;
-            case "2": // talk to people
-                this.advice();
-                break;
-            case "3": // purchase at general store
+            case "2": // purchase at general store
                 this.generalStore();
                 break;
-            case "4": // change travel pace
+            case "3": // change travel pace
                 this.changePace();
                 break;
-            case "5": // change food rations
+            case "4": // change food rations
                 this.changeRations();
                 break;
-            case "6": // view map
+            case "5": // view map
                 this.viewMap();
                 break;
-            case "7": // locations report
+            case "6": // locations report
                 this.displayLocationsView();
                 break;
-            case "8": // view inventory
+            case "7": // view inventory
                 this.viewInventory();
                 break;
-            case "9": //view party members
+            case "8": //view party members
                 this.viewPartyMembers();
                 break;
-            case "10": // stop and rest
+            case "9": // stop and rest
                 this.rest();
                 break;
             case "R":

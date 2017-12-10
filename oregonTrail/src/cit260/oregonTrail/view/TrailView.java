@@ -6,8 +6,6 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.GameControl;
-import cit260.oregonTrail.control.MapControl;
-import cit260.oregonTrail.exception.MapControlException;
 import cit260.oregonTrail.model.Game;
 import cit260.oregonTrail.model.Map;
 import cit260.oregonTrail.view.ViewInterface.View;

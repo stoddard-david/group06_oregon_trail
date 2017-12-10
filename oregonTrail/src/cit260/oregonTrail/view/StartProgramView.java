@@ -9,11 +9,7 @@ import cit260.oregonTrail.control.GameControl;
 import cit260.oregonTrail.exception.GameControlException;
 import cit260.oregonTrail.model.Player;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oregontrail.OregonTrail;
 
 /**

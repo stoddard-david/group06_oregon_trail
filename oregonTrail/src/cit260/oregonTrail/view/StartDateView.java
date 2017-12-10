@@ -6,11 +6,12 @@
 package cit260.oregonTrail.view;
 
 import cit260.oregonTrail.control.MapControl;
+import cit260.oregonTrail.exception.InventoryControlException;
 import cit260.oregonTrail.exception.MapControlException;
+import cit260.oregonTrail.exception.PartyMemberControlException;
 import cit260.oregonTrail.view.ViewInterface.View;
 import cit260.oregonTrail.model.Game;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oregontrail.OregonTrail;
@@ -41,43 +42,50 @@ public class StartDateView extends View {
     @Override
     public boolean doAction(String choice) {
         
-        boolean valid = true; //Stores if a valid option is choosen
-        choice = choice.toUpperCase(); // convert choice to upper case
-        Game game = OregonTrail.getCurrentGame();
-                
-        switch (choice) {
-            case "1": // Set March
-               game.setDate(301);
-               displayNextView();
-               break;
-            case "2": // Set April
-               game.setDate(401);
-               displayNextView();
-               break;
-            case "3": // Set May
-               game.setDate(501);
-               displayNextView();
-               break;
-            case "4": // Set June
-               game.setDate(601);
-               displayNextView();
-               break;
-            case "5": // Set July
-               game.setDate(701);
-               displayNextView();
-               break;
-            case "6": // Go to help
-               displayDateHelp();
-               valid = false; //Set to false, so it won't exit
-               break;
-            default:
-               ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
-               valid = false; //Sets the answer to invalid answer to return
-               break;
+        try {
+            boolean valid = true; //Stores if a valid option is choosen
+            choice = choice.toUpperCase(); // convert choice to upper case
+            Game game = OregonTrail.getCurrentGame();
+            
+            switch (choice) {
+                case "1": // Set March
+                    game.setDate(301);
+                    displayNextView();
+                    break;
+                case "2": // Set April
+                    game.setDate(401);
+                    displayNextView();
+                    break;
+                case "3": // Set May
+                    game.setDate(501);
+                    displayNextView();
+                    break;
+                case "4": // Set June
+                    game.setDate(601);
+                    displayNextView();
+                    break;
+                case "5": // Set July
+                    game.setDate(701);
+                    displayNextView();
+                    break;
+                case "6": // Go to help
+                    displayDateHelp();
+                    valid = false; //Set to false, so it won't exit
+                    break;
+                default:
+                    ErrorView.display(this.getClass().getName(), "\n*** Invalid selection *** Try again");
+                    valid = false; //Sets the answer to invalid answer to return
+                    break;
+            }
+            
+            //Return if a valid choice was picked
+            return valid;
+        } catch (PartyMemberControlException ex) {
+            Logger.getLogger(StartDateView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InventoryControlException ex) {
+            Logger.getLogger(StartDateView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //Return if a valid choice was picked
-        return valid;
+        return false;
     }
     
     private void displayDateHelp() {
@@ -101,7 +109,7 @@ public class StartDateView extends View {
         }
 }
     
-    private void displayNextView() {
+    private void displayNextView() throws PartyMemberControlException, InventoryControlException {
 
         /*
         // Create GameMenuView object

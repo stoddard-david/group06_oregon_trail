@@ -24,13 +24,12 @@ public class RiverView extends View {
                   + "\n| River Control                           |"
                   + "\n-------------------------------------------"
                   + "\n1 - Cross river"
-                  + "\n2 - Talk to people"
-                  + "\n3 - Change pace"
-                  + "\n4 - Change rations"
-                  + "\n5 - View Map"
-                  + "\n6 - View Supplies"
-                  + "\n7 - View Party Members"
-                  + "\n8 - Stop to rest"
+                  + "\n2 - Change pace"
+                  + "\n3 - Change rations"
+                  + "\n4 - View Map"
+                  + "\n5 - View Supplies"
+                  + "\n6 - View Party Members"
+                  + "\n7 - Stop to rest"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -53,25 +52,22 @@ public class RiverView extends View {
             case "1": // travel the trail
                 travelTrail();
                 return true;
-            case "2": // talk to people
-                this.advice();
-                break;
-            case "3": // change travel pace
+            case "2": // change travel pace
                 this.changePace();
                 break;
-            case "4": // change food rations
+            case "3": // change food rations
                 this.changeRations();
                 break;
-            case "5": // view map
+            case "4": // view map
                 this.viewMap();
                 break;
-            case "6": // view inventory
+            case "5": // view inventory
                 this.viewInventory();
                 break;
-            case "7": //view party members
+            case "6": //view party members
                 this.viewPartyMembers();
                 break;
-            case "8": // stop and rest
+            case "7": // stop and rest
                 this.rest();
                 break;
             case "R":

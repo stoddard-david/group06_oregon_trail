@@ -31,7 +31,6 @@ public class MainMenuView extends View {
                   + "\n3 - Get help on how to play the game"
                   + "\n4 - Game controls"
                   + "\n5 - Save game"
-                  + "\n6 - View Locations"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
     }

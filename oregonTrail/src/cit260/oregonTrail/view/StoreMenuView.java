@@ -5,9 +5,7 @@
  */
 package cit260.oregonTrail.view;
 
-import cit260.oregonTrail.control.InventoryControl;
 import cit260.oregonTrail.view.ViewInterface.View;
-import java.util.Scanner;
 /**
  *
  * @author dglinzey

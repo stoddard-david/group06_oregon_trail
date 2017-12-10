@@ -24,14 +24,13 @@ public class LandmarkView extends View{
                   + "\n| Landmark Control                        |"
                   + "\n-------------------------------------------"
                   + "\n1 - Travel on the trail"
-                  + "\n2 - Talk to people"
-                  + "\n3 - Go hunting"
-                  + "\n4 - Change pace"
-                  + "\n5 - Change rations"
-                  + "\n6 - View Map"
-                  + "\n7 - View Supplies"
-                  + "\n8 - View Party Members"
-                  + "\n9 - Stop to rest"
+                  + "\n2 - Go hunting"
+                  + "\n3 - Change pace"
+                  + "\n4 - Change rations"
+                  + "\n5 - View Map"
+                  + "\n6 - View Supplies"
+                  + "\n7 - View Party Members"
+                  + "\n8 - Stop to rest"
                   + "\nR - Return to Main Menu"
                   + "\nQ - Quit"
                   + "\n-------------------------------------------");
@@ -54,28 +53,25 @@ public class LandmarkView extends View{
             case "1": // travel the trail
                 travelTrail();
                 return true;
-            case "2": // talk to people
-                this.advice();
-                break;
-            case "3": // purchase at general store
+            case "2": // purchase at general store
                 this.hunting();
                 break;
-            case "4": // change travel pace
+            case "3": // change travel pace
                 this.changePace();
                 break;
-            case "5": // change food rations
+            case "4": // change food rations
                 this.changeRations();
                 break;
-            case "6": // view map
+            case "5": // view map
                 this.viewMap();
                 break;
-            case "7": // view inventory
+            case "6": // view inventory
                 this.viewInventory();
                 break;
-            case "8": //view party members
+            case "7": //view party members
                 this.viewPartyMembers();
                 break;
-            case "9": // stop and rest
+            case "8": // stop and rest
                 this.rest();
                 break;
             case "R":
